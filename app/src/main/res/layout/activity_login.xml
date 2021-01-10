@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+    <TextView
+        android:id="@+id/sesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/iniciar_sesion"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/correo_texto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sesion"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="50dp"
+        android:text="Correo"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/correo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/correo_texto"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginLeft="50dp"
+
+        />
+
+    <TextView
+        android:id="@+id/contraseña_texto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/correo"
+        android:layout_marginHorizontal="50dp"
+        android:text="@string/contrase_a"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/contraseña"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contraseña_texto"
+        android:layout_marginHorizontal="50dp"
+        />
+
+    <TextView
+        android:id="@+id/olvidar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/olvidaste_tu_contrase_a"
+        android:layout_below="@+id/contraseña"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginHorizontal="50dp"
+
+        />
+    <Button
+        android:id="@+id/entrar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Entrar"
+        android:layout_below="@+id/olvidar"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:onClick="iniciar"
+        />
+
+    <TextView
+        android:id="@+id/crear_cuenta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Crear Cuenta"
+        android:layout_below="@+id/entrar"
+        android:layout_marginHorizontal="50dp"
+        android:gravity="center"/>
+
+
+</RelativeLayout>
