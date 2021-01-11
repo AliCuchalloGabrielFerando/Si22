@@ -3,4 +3,11 @@
     <string name="iniciar_sesion">Iniciar Sesion</string>
     <string name="olvidaste_tu_contrase_a">Olvidaste tu contraseña</string>
     <string name="contrase_a">Contraseña</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <!-- [START fcm_default_icon_string] -->
+    <string name="default_notification_channel_name" translatable="false">Weather</string>
+    <!-- [END fcm_default_icon_string] -->
+    <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
+    <string name="fcm_message">FCM Message</string>
+    <string name="cerrar_sesion">Cerrar Sesion</string>
 </resources>
