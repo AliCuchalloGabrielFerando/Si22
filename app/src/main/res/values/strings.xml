@@ -10,4 +10,9 @@
     <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
     <string name="fcm_message">FCM Message</string>
     <string name="cerrar_sesion">Cerrar Sesion</string>
+    <string name="restablecer_contrase_a">Restablecer Contraseña</string>
+    <string name="aleatorio_gmail_com">aleatorio@gmail.com</string>
+    <string name="recuperar">Recuperar</string>
+    <string name="correo">Correo</string>
+    <string name="aceptar">Aceptar</string>
 </resources>

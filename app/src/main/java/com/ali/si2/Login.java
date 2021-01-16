@@ -41,6 +41,7 @@ public class Login extends AppCompatActivity {
 
 
     public void recuperar(View view) {
+        startActivity(new Intent(this,RecuperarCuenta.class));
 
     }
 

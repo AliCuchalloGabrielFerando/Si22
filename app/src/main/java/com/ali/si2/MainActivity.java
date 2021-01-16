@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void salir(View view) {
+
         vmUser.logout().observe(this,value->{
             startActivity(new Intent(this, Login.class));
             finish();

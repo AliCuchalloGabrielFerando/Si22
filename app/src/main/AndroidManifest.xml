@@ -7,10 +7,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SI2">
-        <activity android:name=".CrearCuenta"></activity>
+        android:theme="@style/Theme.SI2"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".RecuperarCuentaFinal"></activity>
+        <activity android:name=".RecuperarCuenta" />
+        <activity android:name=".CrearCuenta" />
 
         <service
             android:name=".Utilidades.MyFirebaseMessagingService"
@@ -44,7 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
