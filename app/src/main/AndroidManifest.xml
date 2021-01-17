@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SI2"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RecuperarCuentaFinal"></activity>
+        <activity android:name=".VerificarCorreo"></activity>
+        <activity android:name=".RecuperarCuentaFinal" />
         <activity android:name=".RecuperarCuenta" />
         <activity android:name=".CrearCuenta" />
 

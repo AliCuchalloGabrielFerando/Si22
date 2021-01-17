@@ -58,11 +58,13 @@ public class Login extends AppCompatActivity {
             if(value){
                 toHome();
             }else{
-                Toast.makeText(this, "Intente otra vez", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,VerificarCorreo.class));
+                finish();
             }
         });
     }
     public void toHome(){
+
         startActivity(new Intent(this,MainActivity.class));
         finish();
     }

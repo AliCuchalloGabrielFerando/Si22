@@ -41,6 +41,7 @@ public class RepoUser {
                             editor.commit();
                            // User usuario=new Gson().fromJson(user,User.class);
                            // datos.setValue(usuario);
+
                             datos.setValue(true);
                             RetrofitRequest.delete();
                             apiRequest = RetrofitRequest.getRetrofitInstance(context).create(ApiRequest.class);
@@ -115,5 +116,28 @@ public class RepoUser {
                     }
                 });
         return datos;
+    }
+
+
+    public MutableLiveData<String> recuperar(Map<String, String> map) {
+        MutableLiveData<String> mutableLiveData = new MutableLiveData<>();
+        apiRequest.recuperar(map)
+                .enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        if(response.isSuccessful()&&response.body()!=null) {
+                                mutableLiveData.setValue(response.body().get("respuesta").getAsString());
+
+                        }else{
+                            mutableLiveData.setValue("error");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        mutableLiveData.setValue("fallo");
+                    }
+                });
+        return mutableLiveData;
     }
 }

@@ -48,6 +48,8 @@ public interface ApiRequest {
     Call<JsonObject> login(@Body Map<String, String> body);
     @POST("register")
     Call<JsonObject> crearCuenta(@Body Map<String, String> body);
+    @POST("forgot-password")
+    Call<JsonObject>recuperar(@Body Map<String,String> body);
 
     @POST("logout")
     Call<JsonObject> logout();

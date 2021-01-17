@@ -15,4 +15,6 @@
     <string name="recuperar">Recuperar</string>
     <string name="correo">Correo</string>
     <string name="aceptar">Aceptar</string>
+    <string name="verifique_su_correo">Verifique su correo</string>
+    <string name="verificar">verificar</string>
 </resources>

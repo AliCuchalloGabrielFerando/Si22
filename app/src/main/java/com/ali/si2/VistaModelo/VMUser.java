@@ -25,4 +25,10 @@ public class VMUser extends ViewModel {
     public LiveData<Boolean> crearUsuario(Map<String, String> map) {
         return repoUser.crearUsuario(map);
     }
+
+
+    public LiveData<String> recuperar(Map<String, String> map) {
+
+        return  repoUser.recuperar(map);
+    }
 }
