@@ -17,7 +17,7 @@ public class VMUser extends ViewModel {
     public void initRepo(Context context){
         repoUser=new RepoUser(context);
     }
-    public LiveData<Boolean> login(Map<String,String> map){
+    public LiveData<String> login(Map<String,String> map){
      return repoUser.login(map);
     }
     public LiveData<Boolean> logout(){

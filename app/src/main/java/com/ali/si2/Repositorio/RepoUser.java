@@ -29,40 +29,43 @@ public class RepoUser {
         this.apiRequest = RetrofitRequest.getRetrofitInstance(context).create(ApiRequest.class);
         this.context=context;
     }
-    public MutableLiveData<Boolean> login(Map<String,String> map){
-        MutableLiveData<Boolean> datos=new MutableLiveData<>();
+    public MutableLiveData<String> login(Map<String,String> map){
+        MutableLiveData<String> datos=new MutableLiveData<>();
         apiRequest.login(map)
                 .enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.isSuccessful()&&response.body()!=null) {
                             SharedPreferences sharedPreferences = context.getSharedPreferences("userToken", Context.MODE_PRIVATE);
-                            if(!response.body().get("verification").isJsonNull()){
-                                Log.d("Por aqui","si paso");
+                            if(!response.body().get("error").isJsonNull()){
+                                datos.setValue(response.body().get("error").getAsString());
+                            }else {
+                                if (!response.body().get("verification").isJsonNull()) {
+                                    Log.d("Por aqui", "si paso");
 
-                            String token = response.body().get("token").getAsString();
+                                    String token = response.body().get("token").getAsString();
 //                            String user = response.body().getAsJsonObject("user").toString();
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("token", token);
-                           // editor.putString("user", user);
-                            editor.commit();
-                                datos.setValue(true);
-                           // User usuario=new Gson().fromJson(user,User.class);
-                           // datos.setValue(usuario);
-                            }else{
-                                datos.setValue(false);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("token", token);
+                                    // editor.putString("user", user);
+                                    editor.commit();
+                                    datos.setValue("verificado");
+                                    // User usuario=new Gson().fromJson(user,User.class);
+                                    // datos.setValue(usuario);
+                                } else {
+                                    datos.setValue("No verificado");
+                                }
                             }
-
                             RetrofitRequest.delete();
                             apiRequest = RetrofitRequest.getRetrofitInstance(context).create(ApiRequest.class);
                         }else{
-                            datos.setValue(true);
+                            datos.setValue(response.message());
                         }
                     }
 
                     @Override
                     public void onFailure(Call<JsonObject> call, Throwable t) {
-                        datos.setValue(false);
+                        datos.setValue(t.getMessage());
                     }
                 });
         return datos;
