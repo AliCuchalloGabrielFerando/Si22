@@ -6,8 +6,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 
+import com.ali.si2.Modelos.Pais;
 import com.ali.si2.Repositorio.RepoUser;
 
+import java.util.List;
 import java.util.Map;
 
 public class VMUser extends ViewModel {
@@ -30,5 +32,9 @@ public class VMUser extends ViewModel {
     public LiveData<String> recuperar(Map<String, String> map) {
 
         return  repoUser.recuperar(map);
+    }
+
+    public LiveData<List<Pais>> getPaises() {
+        return repoUser.getPaises();
     }
 }

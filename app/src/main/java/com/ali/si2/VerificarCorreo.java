@@ -23,9 +23,13 @@ public class VerificarCorreo extends AppCompatActivity {
 
     public void verificar(View view) {
 
-        if (!correo.getText().toString().isEmpty()) {
-
-            startActivity(new Intent(this, MainActivity.class));
+        if (!correo.getText().toString().isEmpty() && correo.getText().toString().contains("@")) {
+            Intent intent = new Intent(this, RecuperarCuentaFinal.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("correo",correo.getText().toString());
+            bundle.putSerializable("bandera","false");
+            intent.putExtras(bundle);
+            startActivity(intent);
             finish();
         }
     }

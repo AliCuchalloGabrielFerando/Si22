@@ -14,9 +14,14 @@ public class RecuperarCuentaFinal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recuperar_cuenta_final);
         texto = findViewById(R.id.texto);
-        texto.setText("Se ha enviado a "+
-                getIntent().getExtras().getSerializable("correo").toString()
-        +" las intrucciones para recuperar su correo");
+        String bandera =  getIntent().getExtras().getSerializable("bandera").toString();
+        if(bandera.compareTo("true")==0) {
+            texto.setText("Se ha enviado a " + getIntent().getExtras().getSerializable("correo").toString()
+                    + " las intrucciones para recuperar su correo");
+        }else {
+            texto.setText("Se ha enviado a " + getIntent().getExtras().getSerializable("correo").toString()
+                    + " para verficar su correo");
+        }
     }
 
     public void aceptar(View view) {

@@ -2,15 +2,19 @@ package com.ali.si2.Repositorio;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.ali.si2.Modelos.Pais;
 import com.ali.si2.Repositorio.retrofit.ApiRequest;
 import com.ali.si2.Repositorio.retrofit.RetrofitRequest;
 import com.google.gson.JsonObject;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -33,16 +37,22 @@ public class RepoUser {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.isSuccessful()&&response.body()!=null) {
                             SharedPreferences sharedPreferences = context.getSharedPreferences("userToken", Context.MODE_PRIVATE);
+                            if(!response.body().get("verification").isJsonNull()){
+                                Log.d("Por aqui","si paso");
+
                             String token = response.body().get("token").getAsString();
 //                            String user = response.body().getAsJsonObject("user").toString();
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString("token", token);
                            // editor.putString("user", user);
                             editor.commit();
+                                datos.setValue(true);
                            // User usuario=new Gson().fromJson(user,User.class);
                            // datos.setValue(usuario);
+                            }else{
+                                datos.setValue(false);
+                            }
 
-                            datos.setValue(true);
                             RetrofitRequest.delete();
                             apiRequest = RetrofitRequest.getRetrofitInstance(context).create(ApiRequest.class);
                         }else{
@@ -136,6 +146,30 @@ public class RepoUser {
                     @Override
                     public void onFailure(Call<JsonObject> call, Throwable t) {
                         mutableLiveData.setValue("fallo");
+                    }
+                });
+        return mutableLiveData;
+    }
+
+    public MutableLiveData<List<Pais>> getPaises() {
+        MutableLiveData<List<Pais>> mutableLiveData = new MutableLiveData<>();
+        apiRequest.datalogin()
+                .enqueue(new Callback<List<Pais>>() {
+                    @Override
+                    public void onResponse(Call<List<Pais>> call, Response<List<Pais>> response) {
+                        if(response.isSuccessful()&&response.body()!=null) {
+                            List<Pais> listaPaises= new ArrayList<>();
+                            listaPaises = response.body();
+                            mutableLiveData.setValue(listaPaises);
+
+                        }else{
+                            mutableLiveData.setValue(null);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Pais>> call, Throwable t) {
+                        mutableLiveData.setValue(null);
                     }
                 });
         return mutableLiveData;

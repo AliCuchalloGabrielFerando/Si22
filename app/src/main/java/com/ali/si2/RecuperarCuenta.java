@@ -38,6 +38,7 @@ public class RecuperarCuenta extends AppCompatActivity {
                     Intent inten = new Intent(this, RecuperarCuentaFinal.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("correo", correo.getText().toString());
+                    bundle.putSerializable("bandera", "true");
                     inten.putExtras(bundle);
                     startActivity(inten);
                     finish();
