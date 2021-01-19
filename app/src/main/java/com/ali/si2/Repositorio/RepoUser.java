@@ -14,6 +14,7 @@ import com.google.gson.JsonObject;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +45,7 @@ public class RepoUser {
                                     Log.d("Por aqui", "si paso");
 
 
+
                                     datos.setValue("verificado");
                                     // User usuario=new Gson().fromJson(user,User.class);
                                     // datos.setValue(usuario);
@@ -54,6 +56,7 @@ public class RepoUser {
 //                            String user = response.body().getAsJsonObject("user").toString();
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString("token", token);
+                                editor.putString("id",response.body().get("id").getAsString());
                                 // editor.putString("user", user);
                                 editor.commit();
                             }
@@ -82,6 +85,8 @@ public class RepoUser {
                             SharedPreferences sharedPreferences = context.getSharedPreferences("userToken", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor=sharedPreferences.edit();
                             editor.remove("token");
+                            editor.remove("id");
+
                             // editor.remove("user");
                             editor.commit();
                             RetrofitRequest.delete();
@@ -179,14 +184,19 @@ public class RepoUser {
         return mutableLiveData;
     }
 
-    public MutableLiveData<Boolean> validar() {
+    public MutableLiveData<Boolean> validar(String correo) {
         MutableLiveData<Boolean> mutableLiveData = new MutableLiveData<>();
-        apiRequest.validar()
+        SharedPreferences sharedPreferences = context.getSharedPreferences("userToken", Context.MODE_PRIVATE);
+        String id = sharedPreferences.getString("id","1");
+        Map<String,String> map=new HashMap<>();
+        map.put("id",id);
+        map.put("email",correo);
+        apiRequest.validar(map)
                 .enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.isSuccessful()&&response.body()!=null) {
-
+                            Log.d("TAG","ha respondido");
                             mutableLiveData.setValue(true);
 
                         }else{
@@ -197,6 +207,7 @@ public class RepoUser {
                     @Override
                     public void onFailure(Call<JsonObject> call, Throwable t) {
                         mutableLiveData.setValue(false);
+                        Log.d("TAG","NO ha respondido");
                     }
                 });
         return mutableLiveData;

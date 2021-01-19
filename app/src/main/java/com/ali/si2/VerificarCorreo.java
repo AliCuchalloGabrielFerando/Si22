@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,10 +28,12 @@ public class VerificarCorreo extends AppCompatActivity {
     public void verificar(View view) {
 
         if (!correo.getText().toString().isEmpty() && correo.getText().toString().contains("@")) {
-            vmUser.validar().observe(this, new Observer<Boolean>() {
+            Log.d("aqui",correo.getText().toString());
+            vmUser.validar(correo.getText().toString()).observe(this, new Observer<Boolean>() {
                 @Override
                 public void onChanged(Boolean aBoolean) {
                     if(aBoolean){
+                        Log.d("error","paso por la acrividad verificar");
                         Intent intent = new Intent(getApplicationContext(), RecuperarCuentaFinal.class);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("correo",correo.getText().toString());
