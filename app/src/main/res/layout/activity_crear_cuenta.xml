@@ -12,6 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:text="Crear Cuenta" />
 
     <TextView
@@ -117,43 +119,37 @@
             android:textColor="@android:color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/txt6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginLeft="50dp"
+        android:text="Pais" />
 
-        <TextView
-            android:id="@+id/txt6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="Pais" />
-
-        <TextView
-            android:id="@+id/txt7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="250dp"
-            android:text="Ciudad" />
-    </LinearLayout>
-
-    <LinearLayout
+    <Spinner
+        android:id="@+id/spinner1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginLeft="50dp" />
 
-        <Spinner
-            android:id="@+id/spinner1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+    <TextView
+        android:id="@+id/txt7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:gravity="right"
+        android:text="Ciudad" />
 
-        <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+
+
+        />
 
 
     <Button

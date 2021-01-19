@@ -37,4 +37,8 @@ public class VMUser extends ViewModel {
     public LiveData<List<Pais>> getPaises() {
         return repoUser.getPaises();
     }
+
+    public LiveData<Boolean> validar() {
+        return repoUser.validar();
+    }
 }

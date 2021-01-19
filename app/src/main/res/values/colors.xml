@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_primary">#366FFB</color>
+    <color name="colorPrimary">#366FFB</color>
+    <color name="colorprimario">#366FFB</color>
+    <color name="darkerBlack">#366FFB</color>
     <color name="color_negro">#070707</color>
     <color name="color_palido">#DEDFE1</color>
     <color name="colorAccent">#FB7C4F</color>
