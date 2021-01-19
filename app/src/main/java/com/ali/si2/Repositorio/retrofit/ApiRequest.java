@@ -46,6 +46,8 @@ public interface ApiRequest {
     @GET("datalogin")
     Call<List<Pais>> datalogin();
 
+    @GET("send-mail")
+    Call<JsonObject> validar();
 
     @POST("login")
     Call<JsonObject> login(@Body Map<String, String> body);

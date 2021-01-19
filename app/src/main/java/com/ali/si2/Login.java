@@ -55,11 +55,12 @@ public class Login extends AppCompatActivity {
         map.put("email",email);
         map.put("password",password);
         vmUser.login(map).observe(this,value->{
-            if(value){
+            if(value.compareTo("No verificado")==0){
+                startActivity(new Intent(this,VerificarCorreo.class));
+            }else if (value.compareTo("verificado")==0){
                 toHome();
             }else{
-                startActivity(new Intent(this,VerificarCorreo.class));
-                finish();
+                Toast.makeText(this, value, Toast.LENGTH_SHORT).show();
             }
         });
     }

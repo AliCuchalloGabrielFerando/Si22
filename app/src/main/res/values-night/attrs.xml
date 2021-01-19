@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="mycolors">
+        <attr name="colorprimario" format="color"/>
+        <attr name="colorInvertido" format="color"/>
+        <attr name="colorText" format="color"/>
+        <attr name="colorIcon" format="color"/>
+    </declare-styleable>
+</resources>
