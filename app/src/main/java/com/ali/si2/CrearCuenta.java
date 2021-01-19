@@ -89,7 +89,7 @@ public class CrearCuenta extends AppCompatActivity {
         map.put("email",email);
         map.put("password",password);
         map.put("name",nom);
-        map.put("ciudad",String.valueOf(listaPaises.get(spinner1.getSelectedItemPosition()).getCiudades()
+        map.put("ciudad_id",String.valueOf(listaPaises.get(spinner1.getSelectedItemPosition()).getCiudades()
                 .get(spinner2.getSelectedItemPosition()).getId()));
 
        vmUser.crearUsuario(map).observe(this,value -> {

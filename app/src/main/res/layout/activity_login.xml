@@ -62,7 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/correo_texto"
             android:drawableStart="@drawable/icon_email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -86,7 +87,6 @@
         android:layout_marginTop="10dp"
         android:background="#FFFFFF"
         app:passwordToggleEnabled="true"
-
         app:startIconDrawable="@drawable/icon_contra">
 
         <EditText
@@ -100,8 +100,6 @@
             android:inputType="textPassword"
             app:cornerRadius="50dp" />
     </com.google.android.material.textfield.TextInputLayout>
-
-
     <TextView
         android:id="@+id/olvidar"
         android:layout_width="wrap_content"
