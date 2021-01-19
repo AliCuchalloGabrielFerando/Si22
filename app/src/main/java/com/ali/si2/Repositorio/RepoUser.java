@@ -10,6 +10,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.ali.si2.Modelos.Pais;
 import com.ali.si2.Repositorio.retrofit.ApiRequest;
 import com.ali.si2.Repositorio.retrofit.RetrofitRequest;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.JsonObject;
 
 
@@ -44,7 +46,7 @@ public class RepoUser {
                                 if (!response.body().get("verification").isJsonNull()) {
                                     Log.d("Por aqui", "si paso");
 
-
+                                    guardarFCMToken();
 
                                     datos.setValue("verificado");
                                     // User usuario=new Gson().fromJson(user,User.class);
@@ -73,6 +75,27 @@ public class RepoUser {
                     }
                 });
         return datos;
+    }
+
+    private void guardarFCMToken() {
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                Map<String,String> map=new HashMap<>();
+                map.put("token",s);
+             apiRequest.guardarToken(map).enqueue(new Callback<JsonObject>() {
+                 @Override
+                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                     Log.d("TAG", "paso el fcm");
+                 }
+
+                 @Override
+                 public void onFailure(Call<JsonObject> call, Throwable t) {
+                     Log.d("TAG", "no paso el fcm");
+                 }
+             });
+            }
+        });
     }
 
     public MutableLiveData<Boolean> logout() {
