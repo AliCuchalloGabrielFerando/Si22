@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/imagen"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imagen"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        >
+       <TextView
+           android:id="@+id/nombre"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="hola aqui"
+           android:layout_marginTop="10dp"
+           />
+        <TextView
+            android:id="@+id/precio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hola aqui"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/calificacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hola aqui"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/cantidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hola aqui"
+            android:layout_marginTop="10dp"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.02dp"
+        android:layout_below="@id/imagen"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"
+        />
+
+</RelativeLayout>

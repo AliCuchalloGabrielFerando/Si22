@@ -10,4 +10,5 @@ public class Utility {
         String token = sharedPreferences.getString("token","");
         return token;
     }
+
 }

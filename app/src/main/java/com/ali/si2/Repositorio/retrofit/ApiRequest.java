@@ -1,6 +1,7 @@
 package com.ali.si2.Repositorio.retrofit;
 
 import com.ali.si2.Modelos.Pais;
+import com.ali.si2.Modelos.Producto;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -43,6 +44,9 @@ public interface ApiRequest {
        @GET("grupos/{materia_sigla}")
        Call<List<Grupo>> getGrupos(@Path("materia_sigla") String sigla);
    */
+    @POST("obtenerporcategoria")
+    Call<List<Producto>>productoPorCategoria(@Body Map<String,String> body);
+
     @GET("datalogin")
     Call<List<Pais>> datalogin();
 
