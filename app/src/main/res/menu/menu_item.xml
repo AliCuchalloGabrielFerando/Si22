@@ -6,6 +6,11 @@
         android:icon="@drawable/icon_store"
         android:title="Tienda" />
     <item
+        android:id="@+id/busqueda"
+        android:icon="@drawable/icon_busqueda"
+        android:title="Busqueda"
+        />
+    <item
         android:id="@+id/compra"
         android:icon="@drawable/icon_carrito"
         android:title="Carrito" />
@@ -13,4 +18,5 @@
         android:id="@+id/perfil"
         android:icon="@drawable/icon_persona"
         android:title="Perfil" />
+
 </menu>

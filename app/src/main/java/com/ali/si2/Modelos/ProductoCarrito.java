@@ -1,10 +1,6 @@
 package com.ali.si2.Modelos;
 
-import org.w3c.dom.Text;
-
-import java.io.Serializable;
-
-public class Producto  implements Serializable {
+public class ProductoCarrito {
     private int id;
     private String nombre;
     private String descripcion;
@@ -14,8 +10,12 @@ public class Producto  implements Serializable {
     private int calificacion;
     private int cantidad;
     private int garantia_id;
+    private String nombreMarca;
+    private int cantidadCompra;
+    private byte descuento;
+    private int carrito_id;
 
-    public Producto(int id, String nombre, String descripcion, float precio, String url_imagen, String url_3d, int calificacion, int cantidad, int garantia_id) {
+    public ProductoCarrito(int id, String nombre, String descripcion, float precio, String url_imagen, String url_3d, int calificacion, int cantidad, int garantia_id, String nombreMarca, int cantidadCompra, byte descuento, int carrito_id) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -25,10 +25,10 @@ public class Producto  implements Serializable {
         this.calificacion = calificacion;
         this.cantidad = cantidad;
         this.garantia_id = garantia_id;
-    }
-
-    public Producto() {
-
+        this.nombreMarca = nombreMarca;
+        this.cantidadCompra = cantidadCompra;
+        this.descuento = descuento;
+        this.carrito_id = carrito_id;
     }
 
     public int getId() {
@@ -101,5 +101,37 @@ public class Producto  implements Serializable {
 
     public void setGarantia_id(int garantia_id) {
         this.garantia_id = garantia_id;
+    }
+
+    public String getNombreMarca() {
+        return nombreMarca;
+    }
+
+    public void setNombreMarca(String nombreMarca) {
+        this.nombreMarca = nombreMarca;
+    }
+
+    public int getCantidadCompra() {
+        return cantidadCompra;
+    }
+
+    public void setCantidadCompra(int cantidadCompra) {
+        this.cantidadCompra = cantidadCompra;
+    }
+
+    public byte getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(byte descuento) {
+        this.descuento = descuento;
+    }
+
+    public int getCarrito_id() {
+        return carrito_id;
+    }
+
+    public void setCarrito_id(int carrito_id) {
+        this.carrito_id = carrito_id;
     }
 }

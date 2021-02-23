@@ -1,6 +1,9 @@
 package com.ali.si2.Adaptadores;
 
 import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.StrikethroughSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ali.si2.Interfaces.ItemClick;
 import com.ali.si2.Interfaces.ItemListenner;
 import com.ali.si2.Modelos.Producto;
+import com.ali.si2.Modelos.ProductoCarrito;
 import com.ali.si2.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -20,15 +24,14 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
-public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.ViewHolder> {
-    private List<Producto> listaProductos;
-    private ItemListenner itemListenner;
+public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProductoCarrito.ViewHolder> {
+    private List<ProductoCarrito> listaProductos;
+    private ItemClick itemClick;
     private Context context;
 
-
-    public AdaptadorProducto(List<Producto> listaProductos, ItemListenner itemListenner, Context context) {
+    public AdaptadorProductoCarrito(List<ProductoCarrito> listaProductos, ItemClick itemClick, Context context) {
         this.listaProductos = listaProductos;
-        this.itemListenner = itemListenner;
+        this.itemClick = itemClick;
         this.context = context;
     }
 
@@ -41,11 +44,25 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Producto producto = listaProductos.get(position);
+       ProductoCarrito producto = listaProductos.get(position);
         holder.nombre.setText(producto.getNombre());
         holder.precio.setText(String.valueOf(producto.getPrecio()));
-        holder.calificacion.setText(String.valueOf(producto.getCalificacion()));
         holder.cantidad.setText(String.valueOf(producto.getCantidad()));
+        holder.marca.setText(producto.getNombreMarca());
+        if(producto.getDescuento() != 0){
+            String descuento =
+                    String.valueOf(producto.getPrecio() * ((100 -producto.getDescuento())/100)) ;
+            SpannableStringBuilder spanBuilder = new SpannableStringBuilder( descuento+ " Bs");
+            StrikethroughSpan strikethroughSpan = new StrikethroughSpan();
+            spanBuilder.setSpan(strikethroughSpan,
+                    0, descuento.length()+3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            holder.descuento.setText(String.valueOf(producto.getPrecio()));
+            holder.precio.setText(spanBuilder);
+
+        }else{
+            holder.precio.setText(String.valueOf(producto.getPrecio()));
+            holder.descuento.setVisibility(View.GONE);
+        }
 
         Glide.with(context)
                 .load(producto.getUrl_imagen())
@@ -59,20 +76,28 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nombre, precio, calificacion, cantidad;
+        TextView nombre, marca, precio,descuento, cantidad;
         ImageView imagen;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nombre = itemView.findViewById(R.id.nombre);
+            marca = itemView.findViewById(R.id.marca);
+            descuento = itemView.findViewById(R.id.descuento);
             precio = itemView.findViewById(R.id.precio);
-            calificacion = itemView.findViewById(R.id.calificacion);
             cantidad = itemView.findViewById(R.id.cantidad);
             imagen = itemView.findViewById(R.id.imagen);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemListenner.onClick(listaProductos.get(getAdapterPosition()));
+                   itemClick.onClick(getAdapterPosition());
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    itemClick.onLongClick(getAdapterPosition());
+                    return true;
                 }
             });
         }

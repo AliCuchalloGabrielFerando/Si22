@@ -1,8 +1,14 @@
 package com.ali.si2.Repositorio.retrofit;
 
+import com.ali.si2.Modelos.Categoria;
+import com.ali.si2.Modelos.Marca;
 import com.ali.si2.Modelos.Pais;
 import com.ali.si2.Modelos.Producto;
+import com.ali.si2.Modelos.ProductoCarrito;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Map;
@@ -46,6 +52,34 @@ public interface ApiRequest {
    */
     @POST("obtenerporcategoria")
     Call<List<Producto>>productoPorCategoria(@Body Map<String,String> body);
+    @POST("categoriasconproductos")
+    Call<List<Categoria>>categoriasActivas();
+
+    @POST("categoriasdeusuario")
+    Call<List<Categoria>>categoriasDeUsuario(@Body Map<String,String> body);
+
+    @POST("guardarcategoriasdeusuario")
+    Call<Boolean>guardarPreferencias(@Body Map<String,Object>body);
+
+    @POST("obtenersimilares")
+    Call<List<Producto>>productosSimilares(@Body Map<String,String> body);
+
+    @POST("obtenermasvendido")
+    Call<JsonObject>productoMasVendido();
+
+    @POST("marcaygarantiadeproducto")
+    Call<JsonObject>marcaGarantiaDeProducto(@Body Map<String,String> body);
+
+    
+
+    @POST("productosdecarrito")
+    Call<List<ProductoCarrito>>productosDeCarrito();
+
+    @POST("eliminarproducto")
+    Call<Boolean>eliminarProducto(@Body Map<String,String> Body);
+
+
+
 
     @GET("datalogin")
     Call<List<Pais>> datalogin();
@@ -65,4 +99,6 @@ public interface ApiRequest {
 
     @POST("logout")
     Call<JsonObject> logout();
+
+
 }

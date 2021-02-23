@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SI2"
         android:usesCleartextTraffic="true">
-        <activity android:name=".VR"></activity>
+        <activity android:name=".Logout"></activity>
+        <activity android:name=".Preferencias" />
+        <activity android:name=".VR" />
         <activity android:name=".Preview" />
         <activity android:name=".VerificarCorreo" />
         <activity android:name=".RecuperarCuentaFinal" />
