@@ -21,6 +21,10 @@ public class VMCarrito extends ViewModel {
     }
 
     public void eliminarProducto(int productoID) {
-        repoCarrito.eliminarProductio(productoID);
+        repoCarrito.eliminarProducto(productoID);
+    }
+
+    public void actualizarCompraProducto(int productoID, int valor) {
+        repoCarrito.actualizarCompraProducto(productoID,valor);
     }
 }

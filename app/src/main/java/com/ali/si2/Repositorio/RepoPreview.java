@@ -29,13 +29,13 @@ public class RepoPreview {
         this.context = context;
     }
 
-    public MutableLiveData<HashMap<String,Object>> getMarcaGarantiaDeProducto(int productoID) {
+    public MutableLiveData<HashMap<String,Object>> datosExtraDeProducto(int productoID) {
         MutableLiveData<HashMap<String,Object>> mutableLiveData = new MutableLiveData<>();
         Map<String,String> map = new HashMap<>();
         HashMap<String,Object> maper = new HashMap<>();
         map.put("productoID",String.valueOf(productoID));
 
-        apiRequest.marcaGarantiaDeProducto(map).enqueue(new Callback<JsonObject>() {
+        apiRequest.datosExtraDeProducto(map).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.isSuccessful() && response.body() != null) {
@@ -43,13 +43,16 @@ public class RepoPreview {
                     JsonObject marcaObject = response.body().getAsJsonObject("marca");
                     JsonObject garantiaObject = response.body().getAsJsonObject("garantia");
                     JsonObject promocionObject = response.body().getAsJsonObject("promocion");
+                    JsonObject enCarritoObject = response.body().getAsJsonObject("agregado");
                     Gson gson = new Gson();
                     Marca marca = gson.fromJson(marcaObject, Marca.class);
                     Garantia garantia = gson.fromJson(garantiaObject, Garantia.class);
                     Promocion promocion = gson.fromJson(promocionObject,Promocion.class);
+                    Boolean agregado = gson.fromJson(enCarritoObject,Boolean.class);
                     maper.put("marca", marca);
                     maper.put("garantia", garantia);
                     maper.put("promocion",promocion);
+                    maper.put("agregado",agregado);
                     mutableLiveData.setValue(maper);
                 }
             }
@@ -62,5 +65,23 @@ public class RepoPreview {
 
 
         return  mutableLiveData;
+    }
+
+    public void agregarACarrito(int productoID) {
+        Map<String,String> map = new HashMap<>();
+        map.put("productoID",String.valueOf(productoID));
+        apiRequest.agregarACarrito(map).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if(response.isSuccessful() && response.body() != null){
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
     }
 }

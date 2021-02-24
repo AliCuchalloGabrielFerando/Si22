@@ -7,6 +7,7 @@ import android.text.style.StrikethroughSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,7 +39,7 @@ public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProd
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_producto, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_producto_carrito, parent, false);
         return new ViewHolder(view);
     }
 
@@ -78,6 +79,7 @@ public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProd
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nombre, marca, precio,descuento, cantidad;
         ImageView imagen;
+        ImageButton aumentar,disminuir;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -87,6 +89,24 @@ public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProd
             precio = itemView.findViewById(R.id.precio);
             cantidad = itemView.findViewById(R.id.cantidad);
             imagen = itemView.findViewById(R.id.imagen);
+            aumentar = itemView.findViewById(R.id.aumentar);
+            disminuir = itemView.findViewById(R.id.disminuir);
+            aumentar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listaProductos.get(getAdapterPosition()).getCantidadCompra() < listaProductos.get(getAdapterPosition()).getCantidad()){
+                        itemClick.masOMenosProducto(getAdapterPosition(),1);
+                    }
+                }
+            });
+            disminuir.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listaProductos.get(getAdapterPosition()).getCantidadCompra() > 1){
+                        itemClick.masOMenosProducto(getAdapterPosition(),-1);
+                    }
+                }
+            });
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

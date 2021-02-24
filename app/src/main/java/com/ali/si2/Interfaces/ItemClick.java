@@ -4,4 +4,5 @@ public interface ItemClick {
     void onClick(int posicion);
     void onLongClick(int posicion);
     void eliminar(int posicion);
+    void masOMenosProducto(int posicion,int valor);
 }

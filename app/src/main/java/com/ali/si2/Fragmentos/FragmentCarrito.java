@@ -89,4 +89,11 @@ public class FragmentCarrito extends Fragment implements ItemClick {
         listaProductos.remove(posicion);
         adaptador.notifyDataSetChanged();
     }
+
+    @Override
+    public void masOMenosProducto(int posicion, int valor) {
+        listaProductos.get(posicion).setCantidadCompra(listaProductos.get(posicion).getCantidadCompra()+valor);
+        adaptador.notifyDataSetChanged();
+        vmCarrito.actualizarCompraProducto(listaProductos.get(posicion).getId(),valor);
+    }
 }

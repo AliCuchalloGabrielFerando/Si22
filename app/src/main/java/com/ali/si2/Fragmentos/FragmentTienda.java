@@ -125,7 +125,7 @@ public class FragmentTienda extends Fragment implements ItemListenner {
     private void cargarProductos() {
         listaPadre.clear();
         for (Categoria categoria: categorias) {
-        vmProducto.getProductos(categoria.getId()).observe(getViewLifecycleOwner(), productos -> {
+        vmProducto.getProductos(categoria.getId()).observe(this, productos -> {
             if(!productos.isEmpty()) {
                 listaPadre.add(productos);
                // Log.d("aqui",String.valueOf(productos.size()));

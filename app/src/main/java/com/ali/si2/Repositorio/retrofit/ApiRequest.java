@@ -66,11 +66,12 @@ public interface ApiRequest {
 
     @POST("obtenermasvendido")
     Call<JsonObject>productoMasVendido();
+    //faltan estos->>
 
-    @POST("marcaygarantiadeproducto")
-    Call<JsonObject>marcaGarantiaDeProducto(@Body Map<String,String> body);
-
-    
+    @POST("datosextradeproducto")
+    Call<JsonObject>datosExtraDeProducto(@Body Map<String,String> body);
+    @POST("productoalcarrito")
+    Call<JsonObject> agregarACarrito(@Body Map<String,String> body);
 
     @POST("productosdecarrito")
     Call<List<ProductoCarrito>>productosDeCarrito();
@@ -78,9 +79,17 @@ public interface ApiRequest {
     @POST("eliminarproducto")
     Call<Boolean>eliminarProducto(@Body Map<String,String> Body);
 
+    @POST("actualizarcompraproducto")
+    Call<Boolean>actualizarCompraProducto(@Body Map<String,String> Body);
 
 
+    @POST("buscarproductos")
+    Call<List<Producto>> buscarProductos(@Body Map<String,String> body);
 
+    @POST("buscarproductosfiltrados")
+    Call<List<Producto>> buscarProductosFiltrados(@Body Map<String,String> body);
+
+//marca awui
     @GET("datalogin")
     Call<List<Pais>> datalogin();
 

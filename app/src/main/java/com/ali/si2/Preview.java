@@ -46,6 +46,7 @@ public class Preview extends AppCompatActivity implements ItemListenner {
     Boolean bandera;
     ImageView imagen;
     ImageButton agregarACarrito;
+    Boolean agregado;
     RatingBar rating;
     TextView nombre, precio, cantidad, promocion, descripcion, garantia;
     Chip empresa, marca;
@@ -69,6 +70,7 @@ public class Preview extends AppCompatActivity implements ItemListenner {
         empresa = findViewById(R.id.empresa);
         marca = findViewById(R.id.marca);
         agregarACarrito = findViewById(R.id.carrito);
+        agregado = false;
         vmProducto = new ViewModelProvider(this).get(VMProducto.class);
         vmProducto.initRepo(this);
         //poner rayado todo el contenido del texview
@@ -96,12 +98,17 @@ public class Preview extends AppCompatActivity implements ItemListenner {
         descripcion.setText(producto.getDescripcion());
         marca.setText("");
 
-            vmProducto.getMarcaGarantiaDeProducto(producto.getId()).observe(this,stringObjectHashMap -> {
+     /*       vmProducto.datosExtraDeProducto(producto.getId()).observe(this,stringObjectHashMap -> {
                 marcas = (Marca) stringObjectHashMap.get("marca");
                 garantias = (Garantia) stringObjectHashMap.get("garantia");
                 promociones = (Promocion) stringObjectHashMap.get("promocion");
+                agregado = (Boolean) stringObjectHashMap.get("agregado");
+
                 if (!bandera) {
                     marca.setText(marcas.getNombre());
+                }
+                if(agregado){
+                    agregarACarrito.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
                 }
                 garantia.setText("");
                 garantia.setText(String.valueOf(garantias.getTiempo()));
@@ -120,7 +127,7 @@ public class Preview extends AppCompatActivity implements ItemListenner {
                 }else{
                     precio.setText(String.valueOf(producto.getPrecio()));
                 }
-            });
+            });*/
 
 
     }
@@ -135,8 +142,11 @@ public class Preview extends AppCompatActivity implements ItemListenner {
     }
 
     public void agregarACarrito(View view) {
-
-        agregarACarrito.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+        if(!agregado){
+            agregarACarrito.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+            vmProducto.agregarACarrito(producto.getId());
+            agregado = true;
+        }
         //  agregarACarrito.setBackground(this.getResources().getDrawable(R.drawable.border_redondeado_primary));
     }
 

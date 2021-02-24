@@ -8,7 +8,9 @@ import com.ali.si2.Modelos.ProductoCarrito;
 import com.ali.si2.Repositorio.retrofit.ApiRequest;
 import com.ali.si2.Repositorio.retrofit.RetrofitRequest;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,6 +43,40 @@ public class RepoCarrito {
         return mutableLiveData;
     }
 
-    public void eliminarProductio(int productoID) {
+    public void eliminarProducto(int productoID) {
+        Map<String,String> map = new HashMap<>();
+        map.put("productoID",String.valueOf(productoID));
+        apiRequest.eliminarProducto(map).enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if ( response.isSuccessful() && response.body() != null){
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void actualizarCompraProducto(int productoID, int valor) {
+        Map<String,String> map = new HashMap<>();
+        map.put("productoID",String.valueOf(productoID));
+        map.put("valor",String.valueOf(valor));
+        apiRequest.actualizarCompraProducto(map).enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccessful() && response.body() != null){
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+
+            }
+        });
     }
 }

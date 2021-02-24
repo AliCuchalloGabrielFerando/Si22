@@ -46,7 +46,11 @@ RepoPreview repoPreview;
         repoTienda.guardarPreferencias(listaPreferencias);
     }
 
-    public LiveData<HashMap<String,Object>> getMarcaGarantiaDeProducto(int productoID) {
-        return repoPreview.getMarcaGarantiaDeProducto(productoID);
+    public LiveData<HashMap<String,Object>> datosExtraDeProducto(int productoID) {
+        return repoPreview.datosExtraDeProducto(productoID);
+    }
+
+    public void agregarACarrito(int productoID) {
+        repoPreview.agregarACarrito(productoID);
     }
 }
