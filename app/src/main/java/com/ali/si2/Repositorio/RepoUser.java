@@ -10,10 +10,13 @@ import androidx.lifecycle.MutableLiveData;
 import com.ali.si2.Modelos.Pais;
 import com.ali.si2.Repositorio.retrofit.ApiRequest;
 import com.ali.si2.Repositorio.retrofit.RetrofitRequest;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.JsonObject;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,18 +46,21 @@ public class RepoUser {
                                 if (!response.body().get("verification").isJsonNull()) {
                                     Log.d("Por aqui", "si paso");
 
-                                    String token = response.body().get("token").getAsString();
-//                            String user = response.body().getAsJsonObject("user").toString();
-                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    editor.putString("token", token);
-                                    // editor.putString("user", user);
-                                    editor.commit();
+                                    guardarFCMToken();
+
                                     datos.setValue("verificado");
                                     // User usuario=new Gson().fromJson(user,User.class);
                                     // datos.setValue(usuario);
                                 } else {
                                     datos.setValue("No verificado");
                                 }
+                                String token = response.body().get("token").getAsString();
+//                            String user = response.body().getAsJsonObject("user").toString();
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("token", token);
+                                editor.putString("id",response.body().get("id").getAsString());
+                                // editor.putString("user", user);
+                                editor.commit();
                             }
                             RetrofitRequest.delete();
                             apiRequest = RetrofitRequest.getRetrofitInstance(context).create(ApiRequest.class);
@@ -71,6 +77,27 @@ public class RepoUser {
         return datos;
     }
 
+    private void guardarFCMToken() {
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(new OnSuccessListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                Map<String,String> map=new HashMap<>();
+                map.put("token",s);
+             apiRequest.guardarToken(map).enqueue(new Callback<JsonObject>() {
+                 @Override
+                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                     Log.d("TAG", "paso el fcm");
+                 }
+
+                 @Override
+                 public void onFailure(Call<JsonObject> call, Throwable t) {
+                     Log.d("TAG", "no paso el fcm");
+                 }
+             });
+            }
+        });
+    }
+
     public MutableLiveData<Boolean> logout() {
         MutableLiveData<Boolean> datos=new MutableLiveData<>();
         apiRequest.logout()
@@ -81,7 +108,9 @@ public class RepoUser {
                             SharedPreferences sharedPreferences = context.getSharedPreferences("userToken", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor=sharedPreferences.edit();
                             editor.remove("token");
-                           // editor.remove("user");
+                            editor.remove("id");
+
+                            // editor.remove("user");
                             editor.commit();
                             RetrofitRequest.delete();
                             datos.setValue(true);
@@ -139,7 +168,7 @@ public class RepoUser {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.isSuccessful()&&response.body()!=null) {
-                                mutableLiveData.setValue(response.body().get("respuesta").getAsString());
+                            mutableLiveData.setValue(response.body().get("respuesta").getAsString());
 
                         }else{
                             mutableLiveData.setValue("error");
@@ -173,6 +202,35 @@ public class RepoUser {
                     @Override
                     public void onFailure(Call<List<Pais>> call, Throwable t) {
                         mutableLiveData.setValue(null);
+                    }
+                });
+        return mutableLiveData;
+    }
+
+    public MutableLiveData<Boolean> validar(String correo) {
+        MutableLiveData<Boolean> mutableLiveData = new MutableLiveData<>();
+        SharedPreferences sharedPreferences = context.getSharedPreferences("userToken", Context.MODE_PRIVATE);
+        String id = sharedPreferences.getString("id","1");
+        Map<String,String> map=new HashMap<>();
+        map.put("id",id);
+        map.put("email",correo);
+        apiRequest.validar(map)
+                .enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        if(response.isSuccessful()&&response.body()!=null) {
+                            Log.d("TAG","ha respondido");
+                            mutableLiveData.setValue(true);
+
+                        }else{
+                            mutableLiveData.setValue(false);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        mutableLiveData.setValue(false);
+                        Log.d("TAG","NO ha respondido");
                     }
                 });
         return mutableLiveData;

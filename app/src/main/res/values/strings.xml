@@ -17,4 +17,17 @@
     <string name="aceptar">Aceptar</string>
     <string name="verifique_su_correo">Verifique su correo</string>
     <string name="verificar">verificar</string>
+    <string-array name="generos">
+        <item>comedia</item>
+        <item>drama</item>
+        <item>fantasia</item>
+        <item>drama</item>
+        <item>belico</item>
+        <item>suspenso</item>
+        <item>juvenil</item>
+        <item>juvenil</item>
+        <item>juvenil</item>
+        <item>juvenil</item>
+
+    </string-array>
 </resources>
