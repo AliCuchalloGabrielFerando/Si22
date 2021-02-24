@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/buscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:background="@drawable/border_redondeado"
+        android:gravity="center"
+        android:padding="10dp"
+
+        >
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:iconifiedByDefault="false"
+            android:layout_alignParentLeft="true"
+            android:queryHint="hola mundo"
+
+            />
+        <ImageView
+            android:id="@+id/filtro"
+            android:src="@drawable/icon_filtro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:minWidth="40dp"
+            android:minHeight="40dp"
+            android:onClick="llamarAFiltrar"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.01dp"
+        android:layout_below="@id/buscar"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+
+        tools:listitem="@layout/item_producto_imagen" />
+
+
+
+
+</RelativeLayout>
