@@ -6,6 +6,9 @@ public class Promocion {
     private String descripcion;
     private byte descuento;
 
+    public Promocion() {
+    }
+
     public Promocion(int id, String nombre, String descripcion, byte descuento) {
         this.id = id;
         this.nombre = nombre;

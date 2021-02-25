@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.ali.si2.Modelos.Agregado;
 import com.ali.si2.Modelos.Garantia;
 import com.ali.si2.Modelos.Marca;
 import com.ali.si2.Modelos.Promocion;
@@ -39,16 +40,23 @@ public class RepoPreview {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.isSuccessful() && response.body() != null) {
-
-                    JsonObject marcaObject = response.body().getAsJsonObject("marca");
-                    JsonObject garantiaObject = response.body().getAsJsonObject("garantia");
-                    JsonObject promocionObject = response.body().getAsJsonObject("promocion");
-                    JsonObject enCarritoObject = response.body().getAsJsonObject("agregado");
                     Gson gson = new Gson();
+
+                    Promocion promocion=new Promocion();
+                    JsonObject marcaObject = response.body().getAsJsonObject("marca");
+                    try {
+                        JsonObject promocionObject = response.body().getAsJsonObject("promocion");
+                        promocion = gson.fromJson(promocionObject,Promocion.class);
+                    }catch (Exception e){
+
+                    }
+                    JsonObject garantiaObject = response.body().getAsJsonObject("garantia");
+                    JsonObject enCarritoObject = response.body().getAsJsonObject("agregado");
                     Marca marca = gson.fromJson(marcaObject, Marca.class);
                     Garantia garantia = gson.fromJson(garantiaObject, Garantia.class);
-                    Promocion promocion = gson.fromJson(promocionObject,Promocion.class);
-                    Boolean agregado = gson.fromJson(enCarritoObject,Boolean.class);
+
+                    Agregado agregado = gson.fromJson(enCarritoObject,Agregado.class);
+
                     maper.put("marca", marca);
                     maper.put("garantia", garantia);
                     maper.put("promocion",promocion);
@@ -80,7 +88,6 @@ public class RepoPreview {
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-
             }
         });
     }
