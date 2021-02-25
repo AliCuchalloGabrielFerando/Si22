@@ -25,7 +25,7 @@ public class VR extends AppCompatActivity {
         Intent sceneViewerIntent = new Intent(Intent.ACTION_VIEW);
         Uri intentUri =
                 Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
-                        .appendQueryParameter("file", producto.getUrl_3d())
+                        .appendQueryParameter("file", "https://firebasestorage.googleapis.com/v0/b/si-2-5abca.appspot.com/o/mesa.glb?alt=media&token=200fdc00-7661-4460-b9a0-0d34591bb1d8")
                         .appendQueryParameter("mode", "ar_preferred")
                         .build();
         sceneViewerIntent.setData(intentUri);
