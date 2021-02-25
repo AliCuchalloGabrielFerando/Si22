@@ -70,18 +70,19 @@ public interface ApiRequest {
 
     @POST("datosextradeproducto")
     Call<JsonObject>datosExtraDeProducto(@Body Map<String,String> body);
+    //
     @POST("productoalcarrito")
     Call<JsonObject> agregarACarrito(@Body Map<String,String> body);
-
+    //
     @POST("productosdecarrito")
-    Call<List<ProductoCarrito>>productosDeCarrito();
-
+    Call<List<ProductoCarrito>>productosDeCarrito(@Body Map<String,String> body);
+    //
     @POST("eliminarproducto")
     Call<Boolean>eliminarProducto(@Body Map<String,String> Body);
-
+    //
     @POST("actualizarcompraproducto")
     Call<Boolean>actualizarCompraProducto(@Body Map<String,String> Body);
-
+    //
 
     @POST("buscarproductos")
     Call<List<Producto>> buscarProductos(@Body Map<String,String> body);

@@ -9,6 +9,7 @@ public class ProductoCarrito {
     private String url_3d;
     private int calificacion;
     private int cantidad;
+
     private int garantia_id;
     private String nombreMarca;
     private int cantidadCompra;

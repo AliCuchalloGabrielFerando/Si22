@@ -8,6 +8,7 @@ import com.ali.si2.Modelos.ProductoCarrito;
 import com.ali.si2.Repositorio.retrofit.ApiRequest;
 import com.ali.si2.Repositorio.retrofit.RetrofitRequest;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,19 +28,26 @@ public class RepoCarrito {
 
     public MutableLiveData<List<ProductoCarrito>> getProductosCarrito() {
         MutableLiveData<List<ProductoCarrito>> mutableLiveData = new MutableLiveData<>();
-        apiRequest.productosDeCarrito().enqueue(new Callback<List<ProductoCarrito>>() {
-            @Override
-            public void onResponse(Call<List<ProductoCarrito>> call, Response<List<ProductoCarrito>> response) {
-                if (response.isSuccessful() && response.body() != null){
-                    mutableLiveData.setValue(response.body());
-                }
-            }
+        Map<String,String> map = new HashMap<>();
+       apiRequest.productosDeCarrito(map).enqueue(new Callback<List<ProductoCarrito>>() {
+           @Override
+           public void onResponse(Call<List<ProductoCarrito>> call, Response<List<ProductoCarrito>> response) {
+               if (response.isSuccessful()){
+                   if(response.body() != null){
 
-            @Override
-            public void onFailure(Call<List<ProductoCarrito>> call, Throwable t) {
+                       mutableLiveData.setValue(response.body());
+                   }else{
+                       List<ProductoCarrito> lista= new ArrayList<>();
+                       mutableLiveData.setValue(lista);
+                   }
+               }
+           }
 
-            }
-        });
+           @Override
+           public void onFailure(Call<List<ProductoCarrito>> call, Throwable t) {
+
+           }
+       });
         return mutableLiveData;
     }
 

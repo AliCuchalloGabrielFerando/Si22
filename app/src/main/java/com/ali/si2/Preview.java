@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.ali.si2.Adaptadores.AdaptadorProducto;
 import com.ali.si2.Adaptadores.AdaptadorProductoSimple;
 import com.ali.si2.Interfaces.ItemListenner;
+import com.ali.si2.Modelos.Agregado;
 import com.ali.si2.Modelos.Garantia;
 import com.ali.si2.Modelos.Marca;
 import com.ali.si2.Modelos.Producto;
@@ -46,7 +47,7 @@ public class Preview extends AppCompatActivity implements ItemListenner {
     Boolean bandera;
     ImageView imagen;
     ImageButton agregarACarrito;
-    Boolean agregado;
+    Agregado agregado;
     RatingBar rating;
     TextView nombre, precio, cantidad, promocion, descripcion, garantia;
     Chip empresa, marca;
@@ -70,7 +71,7 @@ public class Preview extends AppCompatActivity implements ItemListenner {
         empresa = findViewById(R.id.empresa);
         marca = findViewById(R.id.marca);
         agregarACarrito = findViewById(R.id.carrito);
-        agregado = false;
+        agregado = new Agregado();
         vmProducto = new ViewModelProvider(this).get(VMProducto.class);
         vmProducto.initRepo(this);
         //poner rayado todo el contenido del texview
@@ -85,7 +86,7 @@ public class Preview extends AppCompatActivity implements ItemListenner {
         recycler = findViewById(R.id.recycler);
         recycler.setAdapter(adaptador);
         recycler.setLayoutManager(new GridLayoutManager(this, 3));
-     //   cargarPreview();
+        cargarPreview();
         cargarSimilares();
     }
 
@@ -98,21 +99,23 @@ public class Preview extends AppCompatActivity implements ItemListenner {
         descripcion.setText(producto.getDescripcion());
         marca.setText("");
 
-     /*       vmProducto.datosExtraDeProducto(producto.getId()).observe(this,stringObjectHashMap -> {
+         vmProducto.datosExtraDeProducto(producto.getId()).observe(this,stringObjectHashMap -> {
                 marcas = (Marca) stringObjectHashMap.get("marca");
                 garantias = (Garantia) stringObjectHashMap.get("garantia");
                 promociones = (Promocion) stringObjectHashMap.get("promocion");
-                agregado = (Boolean) stringObjectHashMap.get("agregado");
+                agregado = (Agregado) stringObjectHashMap.get("agregado");
 
                 if (!bandera) {
                     marca.setText(marcas.getNombre());
                 }
-                if(agregado){
+                if(agregado.getAgregado()){
                     agregarACarrito.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
                 }
+
                 garantia.setText("");
                 garantia.setText(String.valueOf(garantias.getTiempo()));
                 rating.setRating(producto.getCalificacion());
+
                 promocion.setText("");
                 if(promociones != null){
                     String descuento =
@@ -127,7 +130,8 @@ public class Preview extends AppCompatActivity implements ItemListenner {
                 }else{
                     precio.setText(String.valueOf(producto.getPrecio()));
                 }
-            });*/
+
+            });
 
 
     }
@@ -142,10 +146,10 @@ public class Preview extends AppCompatActivity implements ItemListenner {
     }
 
     public void agregarACarrito(View view) {
-        if(!agregado){
+        if(!agregado.getAgregado()){
             agregarACarrito.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
             vmProducto.agregarACarrito(producto.getId());
-            agregado = true;
+            agregado.setAgregado(true);
         }
         //  agregarACarrito.setBackground(this.getResources().getDrawable(R.drawable.border_redondeado_primary));
     }
