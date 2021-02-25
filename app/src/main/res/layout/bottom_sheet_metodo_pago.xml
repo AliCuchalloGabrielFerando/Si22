@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomShetContainer"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_sheet"
+    android:paddingVertical="20dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Datos de su tarjeta"
+            android:textAllCaps="true"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF">
+
+
+            <EditText
+                android:id="@+id/numero"
+                android:layout_width="match_parent"
+                android:hint="Número de tarjeta"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/correo_texto"
+                android:inputType="number"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="50dp">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/correo_texto"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#FFFFFF">
+
+
+            <EditText
+                android:id="@+id/anio"
+                android:layout_width="match_parent"
+                android:hint="Año"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/correo_texto"
+                android:inputType="date"
+                android:ems="5"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/correo_texto"
+                android:layout_marginTop="10dp"
+                android:background="#FFFFFF">
+
+
+                <EditText
+                    android:id="@+id/mes"
+                    android:layout_width="match_parent"
+                    android:hint="Mes"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/correo_texto"
+                    android:inputType="date"
+                    android:ems="5"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/correo_texto"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF">
+
+
+            <EditText
+                android:id="@+id/cvv"
+                android:layout_width="match_parent"
+                android:hint="CVV"
+                android:ems="10"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/correo_texto"
+                android:inputType="number"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <Button
+                android:id="@+id/cancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="cancelar"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"/>
+            <Button
+                android:id="@+id/aceptar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="5dp"
+                android:text="continuar"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

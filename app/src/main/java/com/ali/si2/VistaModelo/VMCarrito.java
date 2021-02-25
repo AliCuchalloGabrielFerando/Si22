@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 import com.ali.si2.Modelos.ProductoCarrito;
 import com.ali.si2.Repositorio.RepoCarrito;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class VMCarrito extends ViewModel {
@@ -26,5 +27,9 @@ public class VMCarrito extends ViewModel {
 
     public void actualizarCompraProducto(int productoID, int valor) {
         repoCarrito.actualizarCompraProducto(productoID,valor);
+    }
+
+    public void pagar(HashMap<String, Object> map) {
+        repoCarrito.compra(map);
     }
 }

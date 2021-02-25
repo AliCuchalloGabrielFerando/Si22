@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.ali.si2.Modelos.ProductoCarrito;
 import com.ali.si2.Repositorio.retrofit.ApiRequest;
 import com.ali.si2.Repositorio.retrofit.RetrofitRequest;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -83,6 +84,20 @@ public class RepoCarrito {
 
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void compra(HashMap<String, Object> map) {
+        apiRequest.compra(map).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
 
             }
         });
