@@ -44,7 +44,7 @@ public class AdaptadorDetalleCompra extends RecyclerView.Adapter<AdaptadorDetall
            int cantidad=0;
            for (ProductoCarrito productoCarrito:listaProductos) {
                 precio=precio+productoCarrito.getPrecio();
-                cantidad=cantidad+productoCarrito.getCantidad();
+                cantidad=cantidad+productoCarrito.getCantidadCompra();
            }
            holder.nombre.setText("Total");
            holder.precio.setText(String.valueOf(precio));
@@ -53,7 +53,7 @@ public class AdaptadorDetalleCompra extends RecyclerView.Adapter<AdaptadorDetall
            ProductoCarrito producto = listaProductos.get(position);
            holder.nombre.setText(producto.getNombre());
            holder.precio.setText(String.valueOf(producto.getPrecio()));
-           holder.cantidad.setText(String.valueOf(producto.getCantidad()));
+           holder.cantidad.setText(String.valueOf(producto.getCantidadCompra()));
        }
     }
 
