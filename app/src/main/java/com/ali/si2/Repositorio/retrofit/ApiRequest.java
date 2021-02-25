@@ -50,6 +50,10 @@ public interface ApiRequest {
        @GET("grupos/{materia_sigla}")
        Call<List<Grupo>> getGrupos(@Path("materia_sigla") String sigla);
    */
+
+    @POST("compra")
+    Call<JsonObject> compra(@Body Map<String,Object> Body);
+
     @POST("obtenerporcategoria")
     Call<List<Producto>>productoPorCategoria(@Body Map<String,String> body);
     @POST("categoriasconproductos")
