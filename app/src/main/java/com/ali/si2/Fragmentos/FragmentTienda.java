@@ -113,7 +113,7 @@ public class FragmentTienda extends Fragment implements ItemListenner {
     }
 
     private void cargarCategoria() {
-        vmProducto.getCategorias().observe(getActivity(),categorias1 -> {
+        vmProducto.getLasCategorias().observe(getActivity(),categorias1 -> {
             categorias.clear();
             categorias.addAll(categorias1);
             cargarProductos();

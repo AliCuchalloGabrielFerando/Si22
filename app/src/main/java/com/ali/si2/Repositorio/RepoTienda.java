@@ -60,7 +60,7 @@ public class RepoTienda {
     public MutableLiveData<List<Categoria>> getAllCategorias() {
         MutableLiveData<List<Categoria>> mutableLiveData = new MutableLiveData<>();
         Map<String,String> map = new HashMap<>();
-        apiRequest.categoriasActivas()
+        apiRequest.categoriasActivadas()
                 .enqueue(new Callback<List<Categoria>>() {
                     @Override
                     public void onResponse(Call<List<Categoria>> call, Response<List<Categoria>> response) {
@@ -167,5 +167,25 @@ public class RepoTienda {
 
             }
         });
+    }
+
+    public MutableLiveData<List<Categoria>> getLasCategorias() {
+        MutableLiveData<List<Categoria>> mutableLiveData = new MutableLiveData<>();
+        Map<String,String> map = new HashMap<>();
+        apiRequest.categoriasActivas()
+                .enqueue(new Callback<List<Categoria>>() {
+                    @Override
+                    public void onResponse(Call<List<Categoria>> call, Response<List<Categoria>> response) {
+                        if (response.isSuccessful() && response.body()!= null){
+                            mutableLiveData.setValue(response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Categoria>> call, Throwable t) {
+
+                    }
+                });
+        return mutableLiveData;
     }
 }

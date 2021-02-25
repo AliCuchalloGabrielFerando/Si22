@@ -48,9 +48,9 @@ public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProd
        ProductoCarrito producto = listaProductos.get(position);
         holder.nombre.setText(producto.getNombre());
         holder.precio.setText(String.valueOf(producto.getPrecio()));
-        holder.cantidad.setText(String.valueOf(producto.getCantidad()));
+        holder.cantidad.setText("Cantidad: " + producto.getCantidadCompra());
         holder.marca.setText(producto.getNombreMarca());
-        if(producto.getDescuento() != 0){
+      /*  if(producto.getDescuento() != 0){
             String descuento =
                     String.valueOf(producto.getPrecio() * ((100 -producto.getDescuento())/100)) ;
             SpannableStringBuilder spanBuilder = new SpannableStringBuilder( descuento+ " Bs");
@@ -60,10 +60,10 @@ public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProd
             holder.descuento.setText(String.valueOf(producto.getPrecio()));
             holder.precio.setText(spanBuilder);
 
-        }else{
-            holder.precio.setText(String.valueOf(producto.getPrecio()));
+        }else{*/
+            holder.precio.setText(String.valueOf(producto.getPrecio()) +" $");
             holder.descuento.setVisibility(View.GONE);
-        }
+     //   }
 
         Glide.with(context)
                 .load(producto.getUrl_imagen())
@@ -104,6 +104,7 @@ public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProd
                 public void onClick(View v) {
                     if(listaProductos.get(getAdapterPosition()).getCantidadCompra() > 1){
                         itemClick.masOMenosProducto(getAdapterPosition(),-1);
+
                     }
                 }
             });
