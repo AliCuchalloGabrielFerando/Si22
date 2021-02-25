@@ -113,9 +113,9 @@ public class Preview extends AppCompatActivity implements ItemListenner {
                 if (!bandera) {
                     marca.setText(marcas.getNombre());
                 }
-                if(agregado.getAgregado()){
-                    agregarACarrito.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
-                }
+                //if(agregado.getAgregado()){
+                  //  agregarACarrito.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+             //   }
 
                 garantia.setText("");
                 garantia.setText(String.valueOf(garantias.getTiempo())+" años de garantia");

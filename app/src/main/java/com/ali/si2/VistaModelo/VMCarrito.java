@@ -10,6 +10,7 @@ import com.ali.si2.Repositorio.RepoCarrito;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class VMCarrito extends ViewModel {
     RepoCarrito repoCarrito;
@@ -29,7 +30,7 @@ public class VMCarrito extends ViewModel {
         repoCarrito.actualizarCompraProducto(productoID,valor);
     }
 
-    public void pagar(HashMap<String, Object> map) {
-        repoCarrito.compra(map);
+    public LiveData<Boolean> pagar(Map<String, Object> map) {
+        return repoCarrito.compra(map);
     }
 }
