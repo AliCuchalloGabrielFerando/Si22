@@ -160,11 +160,11 @@ public class Preview extends AppCompatActivity implements ItemListenner {
     }
 
     public void agregarACarrito(View view) {
-        if(!agregado.getAgregado()){
+       // if(!agregado.getAgregado()){
             agregarACarrito.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
             vmProducto.agregarACarrito(producto.getId());
             agregado.setAgregado(true);
-        }
+      //  }
         //  agregarACarrito.setBackground(this.getResources().getDrawable(R.drawable.border_redondeado_primary));
     }
 
