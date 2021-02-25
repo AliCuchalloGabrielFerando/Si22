@@ -105,6 +105,7 @@ public class FragmentBusqueda extends Fragment implements ItemListenner, Filtro 
         Intent intent = new Intent(getContext(), Preview.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("producto", producto);
+        bundle.putSerializable("bandera",false);
         intent.putExtras(bundle);
         startActivity(intent);
 
