@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.StrikethroughSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -26,6 +27,7 @@ import com.ali.si2.Adaptadores.AdaptadorProducto;
 import com.ali.si2.Adaptadores.AdaptadorProductoSimple;
 import com.ali.si2.Interfaces.ItemListenner;
 import com.ali.si2.Modelos.Agregado;
+import com.ali.si2.Modelos.Empresa;
 import com.ali.si2.Modelos.Garantia;
 import com.ali.si2.Modelos.Marca;
 import com.ali.si2.Modelos.Producto;
@@ -44,6 +46,7 @@ public class Preview extends AppCompatActivity implements ItemListenner {
     Marca marcas;
     Garantia garantias;
     Promocion promociones;
+    Empresa empresas;
     Boolean bandera;
     ImageView imagen;
     ImageButton agregarACarrito;
@@ -94,16 +97,18 @@ public class Preview extends AppCompatActivity implements ItemListenner {
         Glide.with(this).load(producto.getUrl_imagen()).into(imagen);
         nombre.setText("");
         nombre.setText(producto.getNombre());
-        cantidad.setText(String.valueOf(producto.getCantidad()));
+        cantidad.setText("Cantidad: " + String.valueOf(producto.getCantidad()));
         descripcion.setText("");
         descripcion.setText(producto.getDescripcion());
         marca.setText("");
+        empresa.setText("");
 
          vmProducto.datosExtraDeProducto(producto.getId()).observe(this,stringObjectHashMap -> {
                 marcas = (Marca) stringObjectHashMap.get("marca");
                 garantias = (Garantia) stringObjectHashMap.get("garantia");
                 promociones = (Promocion) stringObjectHashMap.get("promocion");
                 agregado = (Agregado) stringObjectHashMap.get("agregado");
+                empresas = (Empresa) stringObjectHashMap.get("empresa");
 
                 if (!bandera) {
                     marca.setText(marcas.getNombre());
@@ -113,22 +118,31 @@ public class Preview extends AppCompatActivity implements ItemListenner {
                 }
 
                 garantia.setText("");
-                garantia.setText(String.valueOf(garantias.getTiempo()));
+                garantia.setText(String.valueOf(garantias.getTiempo())+" años de garantia");
                 rating.setRating(producto.getCalificacion());
-
+                empresa.setText(empresas.getNombre());
                 promocion.setText("");
                 if(promociones != null){
+                    float precioss = 100 -promociones.getDescuento();
+                    precioss =precioss/100;
+                 //   precioss = producto.getPrecio() *precioss;
                     String descuento =
-                           String.valueOf(producto.getPrecio() * ((100 -promociones.getDescuento())/100)) ;
-                    SpannableStringBuilder spanBuilder = new SpannableStringBuilder( descuento+ " Bs");
+                           String.valueOf(precioss) ;
+                    SpannableStringBuilder spanBuilder = new SpannableStringBuilder( descuento + " $sus");
                     StrikethroughSpan strikethroughSpan = new StrikethroughSpan();
                     spanBuilder.setSpan(strikethroughSpan,
                             0, descuento.length()+3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     promocion.setText(String.valueOf(producto.getPrecio()));
-                    precio.setText(spanBuilder);
+                    promocion.setVisibility(View.GONE);
+                    precio.setText(String.valueOf(producto.getPrecio()));
+                    Log.d("al",String.valueOf(precioss));
+                    Log.d("al",String.valueOf(precioss));
+                    Log.d("paso","ultra paso aqui");
 
                 }else{
-                    precio.setText(String.valueOf(producto.getPrecio()));
+                    Log.d("paso","aqui");
+                    precio.setText( producto.getPrecio() + " $us");
+                    promocion.setVisibility(View.GONE);
                 }
 
             });

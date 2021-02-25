@@ -53,4 +53,8 @@ RepoPreview repoPreview;
     public void agregarACarrito(int productoID) {
         repoPreview.agregarACarrito(productoID);
     }
+
+    public LiveData<List<Categoria>> getLasCategorias() {
+        return repoTienda.getLasCategorias();
+    }
 }

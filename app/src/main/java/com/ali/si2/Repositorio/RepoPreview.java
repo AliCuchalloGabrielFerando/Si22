@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.ali.si2.Modelos.Agregado;
+import com.ali.si2.Modelos.Empresa;
 import com.ali.si2.Modelos.Garantia;
 import com.ali.si2.Modelos.Marca;
 import com.ali.si2.Modelos.Promocion;
@@ -52,15 +53,17 @@ public class RepoPreview {
                     }
                     JsonObject garantiaObject = response.body().getAsJsonObject("garantia");
                     JsonObject enCarritoObject = response.body().getAsJsonObject("agregado");
+                    JsonObject empresaObject = response.body().getAsJsonObject("empresa");
                     Marca marca = gson.fromJson(marcaObject, Marca.class);
                     Garantia garantia = gson.fromJson(garantiaObject, Garantia.class);
-
                     Agregado agregado = gson.fromJson(enCarritoObject,Agregado.class);
+                    Empresa empresa = gson.fromJson(empresaObject,Empresa.class);
 
                     maper.put("marca", marca);
                     maper.put("garantia", garantia);
                     maper.put("promocion",promocion);
                     maper.put("agregado",agregado);
+                    maper.put("empresa",empresa);
                     mutableLiveData.setValue(maper);
                 }
             }

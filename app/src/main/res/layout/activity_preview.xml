@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".Preview">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/relative1"
@@ -67,19 +71,21 @@
             android:id="@+id/nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:textSize="20sp"
             android:text="nombre" />
         <TextView
             android:id="@+id/cantidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/nombre"
+            android:textSize="20sp"
             android:text="Stock: " />
 
         <TextView
             android:id="@+id/precio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:layout_alignParentRight="true"
             android:text="monto final" />
 
@@ -89,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/precio"
             android:textStyle="italic"
-
+            android:textSize="20sp"
             android:textColor="@color/colorPrimaryRed"
             android:layout_alignParentRight="true"
             android:text="descuento"
@@ -100,7 +106,8 @@
             android:id="@+id/empresa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/descuento"
+            android:layout_below="@+id/cantidad"
+            android:textSize="20sp"
             android:text="aqui nueva empresaa"
             app:chipBackgroundColor="@color/colorPrimary" />
 
@@ -108,9 +115,10 @@
             android:id="@+id/marca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/descuento"
+            android:layout_below="@+id/cantidad"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/empresa"
+            android:textSize="20sp"
             android:text="aqui gra empresa"
             app:chipBackgroundColor="@color/colorPrimary" />
 
@@ -119,6 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/empresa"
+            android:textSize="20sp"
             android:layout_alignParentRight="true"
             android:text="descuento etc
 etddf \n etdfaff"
@@ -129,6 +138,7 @@ etddf \n etdfaff"
             android:id="@+id/garantia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:layout_below="@+id/descripcion"
             android:textColor="@color/colorPrimaryGreen"
             android:drawableLeft="@drawable/icon_garantia"
@@ -139,6 +149,7 @@ etddf \n etdfaff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/garantia"
+            android:textSize="20sp"
             android:text="Similares" />
 
 
@@ -151,5 +162,6 @@ etddf \n etdfaff"
             tools:listitem="@layout/item_producto_imagen" />
 
     </RelativeLayout>
-
 </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

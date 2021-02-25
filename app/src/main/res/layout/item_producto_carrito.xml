@@ -2,7 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="5dp">
     <ImageView
         android:id="@+id/imagen"
         android:layout_width="80dp"
@@ -10,6 +11,7 @@
         android:src="@drawable/sofa"/>
     <TextView
         android:id="@+id/nombre"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/imagen"
@@ -17,6 +19,7 @@
         />
     <TextView
         android:id="@+id/marca"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/imagen"
@@ -25,6 +28,7 @@
         />
     <TextView
         android:id="@+id/precio"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        android:layout_alignParentRight="true"
@@ -32,6 +36,7 @@
         />
     <TextView
         android:id="@+id/descuento"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/precio"
@@ -40,6 +45,7 @@
         />
     <TextView
         android:id="@+id/cantidad"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -49,20 +55,25 @@
         />
     <ImageButton
         android:id="@+id/aumentar"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/descuento"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+
         android:layout_toRightOf="@+id/imagen"
         android:src="@drawable/icon_aumentar"
         android:layout_alignBottom="@+id/imagen"/>
     <ImageButton
         android:id="@+id/disminuir"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/descuento"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/icon_disminuir"
         android:layout_toRightOf="@+id/aumentar"
         android:layout_alignBottom="@+id/imagen"
         />
-
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.01dp"
+        android:layout_below="@id/imagen"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray" />
 </RelativeLayout>

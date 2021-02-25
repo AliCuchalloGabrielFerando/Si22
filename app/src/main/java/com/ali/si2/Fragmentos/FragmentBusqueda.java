@@ -64,7 +64,7 @@ public class FragmentBusqueda extends Fragment implements ItemListenner, Filtro 
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                filtro.setVisibility(View.VISIBLE);
+               // filtro.setVisibility(View.VISIBLE);
                 nombre = query;
                 View view = getActivity().getCurrentFocus();
                 if (view != null){
