@@ -92,7 +92,7 @@ public class RepoCarrito {
 
     public MutableLiveData<Boolean> compra(Map<String, Object> map) {
         MutableLiveData<Boolean> mutableLiveData=new MutableLiveData<>();
-        apiRequest.compra().enqueue(new Callback<JsonObject>() {
+        apiRequest.compra(map).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 mutableLiveData.setValue(true);

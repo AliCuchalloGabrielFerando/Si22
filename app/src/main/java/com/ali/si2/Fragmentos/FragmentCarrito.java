@@ -136,13 +136,13 @@ public class FragmentCarrito extends Fragment implements ItemClick {
 
     private void pagar() {
         Map<String,Object> map=new HashMap<>();
-      /*  map.put("numero",number);
+        map.put("numero",number);
         map.put("anio",year);
-        map.put("mes",moth);*/
-        map.put("direccion","holaa");
-        /*map.put("telefono",telefono);
+        map.put("mes",moth);
+        map.put("direccion",direccion);
+        map.put("telefono",telefono);
         map.put("detalles",toMap(listaProductos));
-        map.put("carrito_id",listaProductos.get(0).getCarrito_id());*/
+        map.put("carrito_id",listaProductos.get(0).getCarrito_id());
         vmCarrito.pagar(map).observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -162,6 +162,7 @@ public class FragmentCarrito extends Fragment implements ItemClick {
         List<HashMap<String,Object>> maps=new ArrayList<>();
         for (ProductoCarrito productoCarrito:listaProductos){
             HashMap<String,Object> map = new HashMap<>();
+            map.put("id",productoCarrito.getId());
             map.put("cantidadCompra",productoCarrito.getCantidadCompra());
             map.put("precio",productoCarrito.getPrecio());
             maps.add(map);
