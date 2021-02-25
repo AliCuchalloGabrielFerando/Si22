@@ -40,15 +40,21 @@ public class RepoPreview {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.isSuccessful() && response.body() != null) {
+                    Gson gson = new Gson();
 
+                    Promocion promocion=new Promocion();
                     JsonObject marcaObject = response.body().getAsJsonObject("marca");
-                    JsonObject promocionObject = response.body().getAsJsonObject("promocion");
+                    try {
+                        JsonObject promocionObject = response.body().getAsJsonObject("promocion");
+                        promocion = gson.fromJson(promocionObject,Promocion.class);
+                    }catch (Exception e){
+
+                    }
                     JsonObject garantiaObject = response.body().getAsJsonObject("garantia");
                     JsonObject enCarritoObject = response.body().getAsJsonObject("agregado");
-                    Gson gson = new Gson();
                     Marca marca = gson.fromJson(marcaObject, Marca.class);
                     Garantia garantia = gson.fromJson(garantiaObject, Garantia.class);
-                    Promocion promocion = gson.fromJson(promocionObject,Promocion.class);
+
                     Agregado agregado = gson.fromJson(enCarritoObject,Agregado.class);
 
                     maper.put("marca", marca);
