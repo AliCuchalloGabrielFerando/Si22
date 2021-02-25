@@ -52,7 +52,7 @@ public interface ApiRequest {
    */
 
     @POST("compra")
-    Call<JsonObject> compra(@Body Map<String,Object> Body);
+    Call<JsonObject> compra();
 
     @POST("obtenerporcategoria")
     Call<List<Producto>>productoPorCategoria(@Body Map<String,String> body);

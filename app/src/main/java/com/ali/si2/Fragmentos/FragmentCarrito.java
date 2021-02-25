@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +34,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FragmentCarrito extends Fragment implements ItemClick {
     List<ProductoCarrito> listaProductos;
@@ -132,15 +135,38 @@ public class FragmentCarrito extends Fragment implements ItemClick {
     }
 
     private void pagar() {
-        HashMap<String,Object> map=new HashMap<>();
-        map.put("numero",number);
+        Map<String,Object> map=new HashMap<>();
+      /*  map.put("numero",number);
         map.put("anio",year);
-        map.put("mes",moth);
-        map.put("direccion",direccion);
-        map.put("telefono",telefono);
-        map.put("detalles",listaProductos);
-        vmCarrito.pagar(map);
+        map.put("mes",moth);*/
+        map.put("direccion","holaa");
+        /*map.put("telefono",telefono);
+        map.put("detalles",toMap(listaProductos));
+        map.put("carrito_id",listaProductos.get(0).getCarrito_id());*/
+        vmCarrito.pagar(map).observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean) {
+                    Toast.makeText(getContext(), "Compra exitosa", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getContext(), "Compra fallida", Toast.LENGTH_SHORT).show();
 
+                }
+
+            }
+        });
+
+    }
+
+    private List<HashMap<String,Object>> toMap(List<ProductoCarrito> listaProductos) {
+        List<HashMap<String,Object>> maps=new ArrayList<>();
+        for (ProductoCarrito productoCarrito:listaProductos){
+            HashMap<String,Object> map = new HashMap<>();
+            map.put("cantidadCompra",productoCarrito.getCantidadCompra());
+            map.put("precio",productoCarrito.getPrecio());
+            maps.add(map);
+        }
+        return maps;
     }
 
     private void cargarCarrito() {
