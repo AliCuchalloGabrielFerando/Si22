@@ -54,9 +54,9 @@ public interface ApiRequest {
     Call<List<Producto>>productoPorCategoria(@Body Map<String,String> body);
     @POST("categoriasconproductos")
     Call<List<Categoria>>categoriasActivas();
-
+/*
     @POST("suscategorias")
-    Call<List<Categoria>>categoriasActivadas();
+    Call<List<Categoria>>categoriasActivadas();*/
 
     @POST("categoriasdeusuario")
     Call<List<Categoria>>categoriasDeUsuario(@Body Map<String,String> body);

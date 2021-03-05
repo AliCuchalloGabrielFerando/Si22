@@ -1,12 +1,14 @@
 package com.ali.si2.Repositorio;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
 import com.ali.si2.Modelos.ProductoCarrito;
 import com.ali.si2.Repositorio.retrofit.ApiRequest;
 import com.ali.si2.Repositorio.retrofit.RetrofitRequest;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,4 +89,25 @@ public class RepoCarrito {
             }
         });
     }
+
+/*    public MutableLiveData<Boolean> compra(Map<String, Object> map) {
+        MutableLiveData<Boolean> mutableLiveData=new MutableLiveData<>();
+        apiRequest.compra(map).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful() && response.body() != null) {
+
+
+                    mutableLiveData.setValue(true);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d("TAG",t.getMessage());
+                mutableLiveData.setValue(false);
+            }
+        });
+        return mutableLiveData;
+    }*/
 }

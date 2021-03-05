@@ -32,7 +32,7 @@ public class Preferencias extends AppCompatActivity {
         chipCategorias.clearCheck();  //para limpiar los chequeos android no lo hace bien
         cargarCategorias();
         //Uso de Chipgroup
-       /* List<String> categorias;
+        List<String> categorias;
         categorias = Arrays.asList(getResources().getStringArray(R.array.generos));
         LayoutInflater inflater= LayoutInflater.from(this);
         for(String cat:categorias){
@@ -43,7 +43,7 @@ public class Preferencias extends AppCompatActivity {
             //chip.setChecked(true);
            // chipCategorias.notify(); no sirve cuelga la aplicacion
 
-        }*/
+        }
 
 
 

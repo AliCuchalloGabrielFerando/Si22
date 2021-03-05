@@ -182,6 +182,7 @@ public class Preview extends AppCompatActivity implements ItemListenner {
         Intent intent = new Intent(this, Preview.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("producto", producto);
+        bundle.putSerializable("bandera",false);
         intent.putExtras(bundle);
         startActivity(intent);
 
