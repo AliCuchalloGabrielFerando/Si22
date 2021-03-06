@@ -48,6 +48,7 @@ public class FragmentCarrito extends Fragment implements ItemClick {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_carrito,container,false);
+        getActivity().setTitle("Carrito");
         return view;
     }
     @Override
@@ -119,7 +120,7 @@ public class FragmentCarrito extends Fragment implements ItemClick {
                 direccion=direcc.getText().toString();
                 telefono=tel.getText().toString();
 
-                pagar();
+                pagar(bottomSheetDialog);
             }
         });
 
@@ -134,7 +135,7 @@ public class FragmentCarrito extends Fragment implements ItemClick {
         bottomSheetDialog.show();
     }
 
-    private void pagar() {
+    private void pagar(BottomSheetDialog bottomSheetDialog) {
         Map<String,Object> map=new HashMap<>();
         map.put("numero",number);
         map.put("anio",year);
@@ -148,8 +149,12 @@ public class FragmentCarrito extends Fragment implements ItemClick {
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean) {
                     Toast.makeText(getContext(), "Compra exitosa", Toast.LENGTH_SHORT).show();
+                    listaProductos.clear();
+                    adaptador.notifyDataSetChanged();
+                    boton.setVisibility(View.GONE);
+                    bottomSheetDialog.dismiss();
                 }else {
-                    Toast.makeText(getContext(), "Compra fallida", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Intente otra vez", Toast.LENGTH_SHORT).show();
 
                 }
 

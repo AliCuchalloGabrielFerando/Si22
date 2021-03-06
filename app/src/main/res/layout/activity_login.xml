@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_palido"
+    android:background="@color/paleta_5"
     tools:context=".Login">
 
     <TextView
@@ -50,9 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/correo_texto"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="10dp"
-        android:background="#FFFFFF"
-        app:startIconDrawable="@drawable/icon_email">
+        android:layout_marginTop="10dp">
 
 
         <EditText
@@ -61,6 +59,7 @@
             android:hint="aleatorio@gmail.com"
             android:layout_height="wrap_content"
             android:layout_below="@+id/correo_texto"
+            android:background="@android:color/white"
             android:drawableStart="@drawable/icon_email"
             android:inputType="textEmailAddress"
             />
@@ -94,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="escriba aqui"
-
+            android:background="@android:color/white"
             android:autofillHints=""
             android:drawableStart="@drawable/icon_contra"
             android:inputType="textPassword"

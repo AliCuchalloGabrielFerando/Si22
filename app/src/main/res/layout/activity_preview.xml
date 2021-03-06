@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:background="@color/paleta_5"
     tools:context=".Preview">
 <RelativeLayout
     android:layout_width="match_parent"
@@ -108,6 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/cantidad"
             android:textSize="20sp"
+            android:textColor="@color/white"
             android:text="aqui nueva empresaa"
             app:chipBackgroundColor="@color/colorPrimary" />
 
@@ -118,6 +120,7 @@
             android:layout_below="@+id/cantidad"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/empresa"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:text="aqui gra empresa"
             app:chipBackgroundColor="@color/colorPrimary" />

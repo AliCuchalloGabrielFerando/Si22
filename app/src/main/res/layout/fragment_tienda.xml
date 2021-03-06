@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/paleta_5"
     android:fillViewport="true">
 
 
@@ -40,6 +41,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/paleta_5"
                     android:layout_gravity="center">
 
 
@@ -79,11 +81,13 @@
                     <RatingBar
                         android:id="@+id/calificacion"
                         style="@style/Widget.AppCompat.RatingBar.Small"
+                        android:progressTint="@color/paleta_3"
+                        android:secondaryProgressTint="@color/paleta_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/vendido"
                         android:layout_centerHorizontal="true"
-                        android:numStars="5" />
+                        android:rating="5"/>
 
                 </RelativeLayout>
 

@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="50dp"
     android:stretchColumns="*"
+    android:background="@color/paleta_5"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
         <TableRow

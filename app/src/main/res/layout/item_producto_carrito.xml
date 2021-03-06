@@ -3,11 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/paleta_5"
     android:paddingHorizontal="5dp">
     <ImageView
         android:id="@+id/imagen"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/sofa"/>
     <TextView
         android:id="@+id/nombre"
@@ -32,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        android:layout_alignParentRight="true"
-        android:text="producto"
+        android:text="Precio"
         />
     <TextView
         android:id="@+id/descuento"
@@ -41,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/precio"
         android:layout_alignParentRight="true"
-        android:text="producto"
+        android:text="Descuento"
         />
     <TextView
         android:id="@+id/cantidad"
@@ -51,13 +52,12 @@
         android:layout_marginTop="30dp"
         android:layout_below="@+id/nombre"
         android:layout_alignParentRight="true"
-        android:text="cantidad"
+        android:text="Cantidad"
         />
     <ImageButton
         android:id="@+id/aumentar"
         android:layout_width="40dp"
         android:layout_height="40dp"
-
         android:layout_toRightOf="@+id/imagen"
         android:src="@drawable/icon_aumentar"
         android:layout_alignBottom="@+id/imagen"/>
@@ -65,7 +65,7 @@
         android:id="@+id/disminuir"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/icon_disminuir"
+        android:src="@drawable/icon_menos"
         android:layout_toRightOf="@+id/aumentar"
         android:layout_alignBottom="@+id/imagen"
         />
