@@ -88,7 +88,7 @@ public class Preview extends AppCompatActivity implements ItemListenner {
         adaptador = new AdaptadorProductoSimple(listaProductos, this, this);
         recycler = findViewById(R.id.recycler);
         recycler.setAdapter(adaptador);
-        recycler.setLayoutManager(new GridLayoutManager(this, 3));
+        recycler.setLayoutManager(new GridLayoutManager(this, 2));
         cargarPreview();
         cargarSimilares();
     }

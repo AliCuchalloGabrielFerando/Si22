@@ -50,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/correo_texto"
         android:layout_marginHorizontal="50dp"
+        app:startIconDrawable="@drawable/icon_email"
         android:layout_marginTop="10dp">
 
 

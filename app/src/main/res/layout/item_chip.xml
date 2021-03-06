@@ -5,9 +5,10 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:text=""
-    android:textColor="@android:color/white"
+    android:textColor="@color/color_primary"
+    android:textStyle="bold"
     style="@style/Widget.MaterialComponents.Chip.Filter"
-    app:chipBackgroundColor="@color/colorPrimary"
+    app:chipBackgroundColor="@color/paleta_1"
     android:checkable="true">
 
 </com.google.android.material.chip.Chip>

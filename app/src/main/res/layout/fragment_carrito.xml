@@ -23,6 +23,6 @@
         android:backgroundTint="@color/color_primary"
         android:gravity="center"
         android:text="Comprar"
-        app:cornerRadius="30dp"
+        app:cornerRadius="15dp"
         />
 </RelativeLayout>

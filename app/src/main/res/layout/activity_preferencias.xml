@@ -5,12 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/paleta_5"
+    android:padding="5dp"
     tools:context=".Preferencias">
     <TextView
         android:id="@+id/categoria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Categorias"/>
+        android:textColor="@color/black"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:text="Categorias"/>
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/categorias"

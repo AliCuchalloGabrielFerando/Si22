@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/paleta_5"
     android:paddingHorizontal="5dp">
     <ImageView
         android:id="@+id/imagen"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_centerVertical="true"
         android:src="@drawable/sofa"/>
     <TextView
         android:id="@+id/nombre"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:textAllCaps="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/imagen"
+        android:textColor="@color/color_primary"
         android:text="producto"
         />
     <TextView
         android:id="@+id/marca"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/imagen"
@@ -30,6 +34,7 @@
     <TextView
         android:id="@+id/precio"
         android:textSize="18sp"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        android:layout_alignParentRight="true"
@@ -41,32 +46,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/precio"
+        android:textColor="@color/paleta_8"
         android:layout_alignParentRight="true"
         android:text="Descuento"
         />
     <TextView
         android:id="@+id/cantidad"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_below="@+id/nombre"
         android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/aumentar"
         android:text="Cantidad"
         />
     <ImageButton
         android:id="@+id/aumentar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_toRightOf="@+id/imagen"
         android:src="@drawable/icon_aumentar"
+        android:background="@drawable/boton_redondo"
+        app:cornerRadius="30dp"
         android:layout_alignBottom="@+id/imagen"/>
     <ImageButton
         android:id="@+id/disminuir"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/icon_menos"
+        android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/aumentar"
+        android:background="@drawable/boton_redondo"
         android:layout_alignBottom="@+id/imagen"
         />
     <View
