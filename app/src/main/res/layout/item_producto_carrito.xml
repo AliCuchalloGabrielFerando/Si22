@@ -27,21 +27,25 @@
         android:text="marca"
         />
     <TextView
+        android:layout_marginTop="5dp"
         android:id="@+id/precio"
         android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/color_primary"
+        android:textStyle="bold"
        android:layout_alignParentRight="true"
         android:text="producto"
         />
     <TextView
         android:id="@+id/descuento"
         android:textSize="18sp"
+        android:textColor="@color/colorPrimaryRed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/precio"
         android:layout_alignParentRight="true"
-        android:text="producto"
+        android:text="descuento"
         />
     <TextView
         android:id="@+id/cantidad"

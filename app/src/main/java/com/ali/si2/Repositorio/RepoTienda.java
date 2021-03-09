@@ -60,7 +60,7 @@ public class RepoTienda {
     public MutableLiveData<List<Categoria>> getAllCategorias() {
         MutableLiveData<List<Categoria>> mutableLiveData = new MutableLiveData<>();
         Map<String,String> map = new HashMap<>();
-        apiRequest.categoriasActivas()
+        apiRequest.categoriasActivadas()
                 .enqueue(new Callback<List<Categoria>>() {
                     @Override
                     public void onResponse(Call<List<Categoria>> call, Response<List<Categoria>> response) {
