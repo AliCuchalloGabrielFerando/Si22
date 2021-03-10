@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+    <TextView
+        android:id="@+id/texto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="¿Desea caliificar el producto?"
+        android:gravity="center"
+        />
+    <RatingBar
+        android:id="@+id/calificacion"
+        style="@style/Widget.AppCompat.RatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/texto"
+        android:layout_centerHorizontal="true"
+        android:numStars="5" />
+
+    <Button
+        android:id="@+id/boton1"
+        android:layout_width="120dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+
+        android:backgroundTint="@color/color_primary"
+        android:layout_below="@+id/calificacion"
+        android:text="Aceptar"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/purple_700"
+        android:layout_toRightOf="@+id/boton2"
+
+        app:cornerRadius="30dp" />
+
+    <Button
+        android:id="@+id/boton2"
+        android:layout_width="120dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calificacion"
+        android:layout_marginLeft="65dp"
+        android:backgroundTint="@color/darker_gray"
+        android:text="Cancelar"
+        android:textColor="@color/purple_700"
+        app:cornerRadius="30dp" />
+</RelativeLayout>

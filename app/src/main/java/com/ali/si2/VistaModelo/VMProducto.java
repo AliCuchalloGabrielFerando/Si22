@@ -14,6 +14,7 @@ import com.ali.si2.Repositorio.RepoUser;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class VMProducto extends ViewModel {
 RepoTienda repoTienda;
@@ -56,5 +57,10 @@ RepoPreview repoPreview;
 
     public LiveData<List<Categoria>> getLasCategorias() {
         return repoTienda.getLasCategorias();
+    }
+
+
+    public LiveData<Boolean> setCalificacion(Map<String, String> map) {
+        return repoPreview.setCalificacion(map);
     }
 }

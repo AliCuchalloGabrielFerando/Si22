@@ -94,4 +94,25 @@ public class RepoPreview {
             }
         });
     }
+
+    public MutableLiveData<Boolean> setCalificacion(Map<String, String> map) {
+        MutableLiveData<Boolean> mutableLiveData = new MutableLiveData<>();
+        apiRequest.calificarProducto(map).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if(response.isSuccessful() && response.body() != null){
+                    Gson gson = new Gson();
+                    JsonObject banderaObject = response.body().getAsJsonObject("bandera");
+                    Boolean bandera = gson.fromJson(banderaObject,Boolean.class);
+                    mutableLiveData.setValue(bandera);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
+        return mutableLiveData;
+    }
 }

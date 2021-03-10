@@ -93,6 +93,9 @@ public interface ApiRequest {
     @POST("buscarproductosfiltrados")
     Call<List<Producto>> buscarProductosFiltrados(@Body Map<String,String> body);
 
+    @POST("calificarproducto")
+    Call<JsonObject>calificarProducto(@Body Map<String,String> body);
+
 //marca awui
     @GET("datalogin")
     Call<List<Pais>> datalogin();

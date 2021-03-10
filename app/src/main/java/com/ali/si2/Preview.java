@@ -2,6 +2,7 @@ package com.ali.si2;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -26,6 +27,8 @@ import android.widget.Toast;
 
 import com.ali.si2.Adaptadores.AdaptadorProducto;
 import com.ali.si2.Adaptadores.AdaptadorProductoSimple;
+import com.ali.si2.Fragmentos.DePreview.FragmentBSCalificar;
+import com.ali.si2.Interfaces.Filtro;
 import com.ali.si2.Interfaces.ItemListenner;
 import com.ali.si2.Modelos.Agregado;
 import com.ali.si2.Modelos.Empresa;
@@ -39,10 +42,11 @@ import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.ali.si2.R.color.color_primary;
 
-public class Preview extends AppCompatActivity implements ItemListenner {
+public class Preview extends AppCompatActivity implements ItemListenner, Filtro {
     Producto producto;
     Marca marcas;
     Garantia garantias;
@@ -188,5 +192,20 @@ public class Preview extends AppCompatActivity implements ItemListenner {
         intent.putExtras(bundle);
         startActivity(intent);
 
+    }
+
+    public void calificar(View view) {
+        FragmentBSCalificar fragmentBSCalificar = new FragmentBSCalificar(this);
+        fragmentBSCalificar.show(getSupportFragmentManager(),"mostrarCalificar");
+    }
+
+    @Override
+    public void onFiltro(Map<String, String> map) {
+        map.put("productoID",String.valueOf(producto.getId()));
+        vmProducto.setCalificacion(map).observe(this,aBoolean -> {
+            if (!aBoolean){
+                Toast.makeText(this, "fallo su calificacion", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
