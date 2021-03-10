@@ -21,7 +21,7 @@ public class VMCompra extends ViewModel {
 
 
 
-    public LiveData<Boolean> registrarTarjeta(Map<String, Object> map) {
+    public LiveData<Tarjeta> registrarTarjeta(Map<String, Object> map) {
         return repoCompra.registrarTarjeta(map);
     }
     public LiveData<Tarjeta> obtenerTarjeta() {

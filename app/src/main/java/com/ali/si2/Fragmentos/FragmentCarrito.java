@@ -24,6 +24,7 @@ import com.ali.si2.Adaptadores.AdaptadorDetalleCompra;
 import com.ali.si2.Adaptadores.AdaptadorProductoCarrito;
 import com.ali.si2.Fragmentos.DeCarrito.FragmentBSEliminar;
 import com.ali.si2.Fragmentos.DeCarrito.SheetTipoPago;
+import com.ali.si2.Interfaces.Filtro;
 import com.ali.si2.Interfaces.ItemClick;
 import com.ali.si2.Modelos.Producto;
 import com.ali.si2.Modelos.ProductoCarrito;
@@ -44,7 +45,6 @@ public class FragmentCarrito extends Fragment implements ItemClick {
     VMCarrito vmCarrito;
     RecyclerView recycler;
     Button boton;
-    String number,year,moth,cv,direccion,telefono;
 
     @Nullable
     @Override
@@ -67,155 +67,19 @@ public class FragmentCarrito extends Fragment implements ItemClick {
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SheetTipoPago bottomSheet = new SheetTipoPago(listaProductos);
+                SheetTipoPago bottomSheet = new SheetTipoPago(listaProductos, new Filtro() {
+                    @Override
+                    public void onFiltro(Map<String, String> map) {
+                        adaptador.notifyDataSetChanged();
+                        boton.setVisibility(View.GONE);
+                    }
+                });
                 bottomSheet.show(getChildFragmentManager(),bottomSheet.getTag());
-
-               /* BottomSheetDialog bottomSheetDialog=new BottomSheetDialog(getContext(),R.style.bottomSheetDialogTheme);
-                View view=LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet_metodo_pago,(LinearLayout)getView().findViewById(R.id.bottomShetContainer));
-                Button aceptar,cancelar;
-
-                view.findViewById(R.id.aceptar).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        EditText numero,anio,mes,cvv;
-                        numero=view.findViewById(R.id.numero);
-                        anio=view.findViewById(R.id.anio);
-                        mes=view.findViewById(R.id.mes);
-                        cvv=view.findViewById(R.id.cvv);
-
-                        number=numero.getText().toString();
-                        year=anio.getText().toString();
-                        moth=mes.getText().toString();
-                        cv=cvv.getText().toString();
-                        bottomSheetDialog.dismiss();
-
-                        confirmarPago();
-                    }
-                });
-
-                view.findViewById(R.id.cancelar).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        bottomSheetDialog.dismiss();
-                    }
-                });
-
-                bottomSheetDialog.setContentView(view);
-                bottomSheetDialog.show();*/
-            }
-        });
-
-    }
-/*
-    private void confirmarPago() {
-        BottomSheetDialog bottomSheetDialog=new BottomSheetDialog(getContext(),R.style.bottomSheetDialogTheme);
-        View view=LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet_confirmar_pago,(LinearLayout)getView().findViewById(R.id.bottomShetContainer));
-        Button aceptar,cancelar;
-        AdaptadorDetalleCompra adaptadorDetalleCompra=new AdaptadorDetalleCompra(listaProductos);
-        RecyclerView recyclerView=view.findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adaptadorDetalleCompra);
-        view.findViewById(R.id.pagar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText direcc,tel;
-                tel=view.findViewById(R.id.telefono);
-                direcc=view.findViewById(R.id.direccion);
-
-                direccion=direcc.getText().toString();
-                telefono=tel.getText().toString();
-
-                pagar(bottomSheetDialog);
-            }
-        });
-
-        view.findViewById(R.id.cancelar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheetDialog.dismiss();
-            }
-        });
-
-        bottomSheetDialog.setContentView(view);
-        bottomSheetDialog.show();
-    }
-
-    private void pagar() {
-        Map<String,Object> map=new HashMap<>();
-        map.put("numero",number);
-        map.put("anio",year);
-        map.put("mes",moth);
-        map.put("direccion",direccion);
-        map.put("telefono",telefono);
-        map.put("detalles",toMap(listaProductos));
-        map.put("carrito_id",listaProductos.get(0).getCarrito_id());
-        vmCarrito.pagar(map).observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if(aBoolean) {
-                    Toast.makeText(getContext(), "Compra exitosa", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(getContext(), "Compra fallida", Toast.LENGTH_SHORT).show();
-
-                }
-
             }
         });
 
     }
 
-    private List<HashMap<String,Object>> toMap(List<ProductoCarrito> listaProductos) {
-        List<HashMap<String,Object>> maps=new ArrayList<>();
-        for (ProductoCarrito productoCarrito:listaProductos){
-            HashMap<String,Object> map = new HashMap<>();
-            map.put("id",productoCarrito.getId());
-            map.put("cantidadCompra",productoCarrito.getCantidadCompra());
-            map.put("precio",productoCarrito.getPrecio());
-            maps.add(map);
-        }
-        return maps;
-    }*/
-
-    private void pagar(BottomSheetDialog bottomSheetDialog) {
-        Map<String,Object> map=new HashMap<>();
-        map.put("numero",number);
-        map.put("anio",year);
-        map.put("mes",moth);
-        map.put("direccion",direccion);
-        map.put("telefono",telefono);
-        map.put("detalles",toMap(listaProductos));
-        map.put("carrito_id",listaProductos.get(0).getCarrito_id());
-        vmCarrito.pagar(map).observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if(aBoolean) {
-                    Toast.makeText(getContext(), "Compra exitosa", Toast.LENGTH_SHORT).show();
-                    listaProductos.clear();
-                    adaptador.notifyDataSetChanged();
-                    boton.setVisibility(View.GONE);
-                    bottomSheetDialog.dismiss();
-                }else {
-                    Toast.makeText(getContext(), "Intente otra vez", Toast.LENGTH_SHORT).show();
-
-                }
-
-            }
-        });
-
-    }
-
-    private List<HashMap<String,Object>> toMap(List<ProductoCarrito> listaProductos) {
-        List<HashMap<String,Object>> maps=new ArrayList<>();
-        for (ProductoCarrito productoCarrito:listaProductos){
-            HashMap<String,Object> map = new HashMap<>();
-            map.put("id",productoCarrito.getId());
-            map.put("cantidadCompra",productoCarrito.getCantidadCompra());
-            map.put("precio",productoCarrito.getPrecio());
-            maps.add(map);
-        }
-        return maps;
-    }
-*/
     private void cargarCarrito() {
         vmCarrito.getProductos().observe(getViewLifecycleOwner(),productoCarritos -> {
             listaProductos.clear();

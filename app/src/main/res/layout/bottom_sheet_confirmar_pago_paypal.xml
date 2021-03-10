@@ -72,24 +72,14 @@
                 android:inputType="number"
                 />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
+        <ImageView
+            android:layout_marginVertical="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="10dp"
-            app:startIconDrawable="@drawable/icon_card"
-            android:background="#FFFFFF">
+            android:layout_height="50dp"
+            android:src="@drawable/paypal_log"/>
 
 
-            <EditText
-                android:id="@+id/tarjeta"
-                android:layout_width="match_parent"
-                android:hint="Tarjeta"
-                android:enabled="false"
-                android:layout_height="wrap_content"
-                android:text="****1942"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
+
 
 
         <TableLayout android:layout_width="match_parent"
@@ -103,14 +93,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="Producto"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="Cantidad"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="Precio"/>
             </TableRow>
         </TableLayout>
@@ -127,6 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="5dp"
+                android:backgroundTint="#2196F3"
                 android:text="pagar"
                 android:layout_gravity="center"/>
     </LinearLayout>

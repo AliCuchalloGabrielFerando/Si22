@@ -56,7 +56,7 @@ public interface ApiRequest {
     @POST("compra")
     Call<JsonObject> compra(@Body Map<String,Object> body);
     @POST("registrartarjeta")
-    Call<JsonObject> registrarTarjeta(@Body Map<String,Object> body);
+    Call<Tarjeta> registrarTarjeta(@Body Map<String,Object> body);
     @POST("obtenertarjeta")
     Call<Tarjeta> obtenerTarjeta();
 

@@ -48,22 +48,22 @@ public class RepoCompra {
         return mutableLiveData;
     }
 
-    public MutableLiveData<Boolean> registrarTarjeta(Map<String, Object> map) {
-        MutableLiveData<Boolean> mutableLiveData=new MutableLiveData<>();
-        apiRequest.registrarTarjeta(map).enqueue(new Callback<JsonObject>() {
+    public MutableLiveData<Tarjeta> registrarTarjeta(Map<String, Object> map) {
+        MutableLiveData<Tarjeta> mutableLiveData=new MutableLiveData<>();
+        apiRequest.registrarTarjeta(map).enqueue(new Callback<Tarjeta>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<Tarjeta> call, Response<Tarjeta> response) {
                 if (response.isSuccessful()) {
-                    mutableLiveData.setValue(true);
+                    mutableLiveData.setValue(response.body());
                 }else {
-                    mutableLiveData.setValue(false);
+                    mutableLiveData.setValue(null);
                 }
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(Call<Tarjeta> call, Throwable t) {
                 Log.d("TAG",t.getMessage());
-                mutableLiveData.setValue(false);
+                mutableLiveData.setValue(null);
             }
         });
         return mutableLiveData;
