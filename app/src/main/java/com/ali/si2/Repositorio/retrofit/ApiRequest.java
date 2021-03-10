@@ -5,6 +5,7 @@ import com.ali.si2.Modelos.Marca;
 import com.ali.si2.Modelos.Pais;
 import com.ali.si2.Modelos.Producto;
 import com.ali.si2.Modelos.ProductoCarrito;
+import com.ali.si2.Modelos.Tarjeta;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -53,6 +54,10 @@ public interface ApiRequest {
 
     @POST("compra")
     Call<JsonObject> compra(@Body Map<String,Object> body);
+    @POST("registrartarjeta")
+    Call<JsonObject> registrarTarjeta(@Body Map<String,Object> body);
+    @POST("obtenertarjeta")
+    Call<Tarjeta> obtenerTarjeta();
 
     @POST("obtenerporcategoria")
     Call<List<Producto>>productoPorCategoria(@Body Map<String,String> body);

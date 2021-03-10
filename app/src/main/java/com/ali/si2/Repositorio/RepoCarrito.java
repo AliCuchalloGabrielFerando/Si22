@@ -90,20 +90,5 @@ public class RepoCarrito {
         });
     }
 
-    public MutableLiveData<Boolean> compra(Map<String, Object> map) {
-        MutableLiveData<Boolean> mutableLiveData=new MutableLiveData<>();
-        apiRequest.compra(map).enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                mutableLiveData.setValue(true);
-            }
 
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.d("TAG",t.getMessage());
-                mutableLiveData.setValue(false);
-            }
-        });
-        return mutableLiveData;
-    }
 }

@@ -30,7 +30,4 @@ public class VMCarrito extends ViewModel {
         repoCarrito.actualizarCompraProducto(productoID,valor);
     }
 
-    public LiveData<Boolean> pagar(Map<String, Object> map) {
-        return repoCarrito.compra(map);
-    }
 }

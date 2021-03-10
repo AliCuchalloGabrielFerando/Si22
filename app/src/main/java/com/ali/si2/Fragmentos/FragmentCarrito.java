@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ali.si2.Adaptadores.AdaptadorDetalleCompra;
 import com.ali.si2.Adaptadores.AdaptadorProductoCarrito;
 import com.ali.si2.Fragmentos.DeCarrito.FragmentBSEliminar;
+import com.ali.si2.Fragmentos.DeCarrito.SheetTipoPago;
 import com.ali.si2.Interfaces.ItemClick;
 import com.ali.si2.Modelos.Producto;
 import com.ali.si2.Modelos.ProductoCarrito;
@@ -65,7 +66,10 @@ public class FragmentCarrito extends Fragment implements ItemClick {
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BottomSheetDialog bottomSheetDialog=new BottomSheetDialog(getContext(),R.style.bottomSheetDialogTheme);
+                SheetTipoPago bottomSheet = new SheetTipoPago(listaProductos);
+                bottomSheet.show(getChildFragmentManager(),bottomSheet.getTag());
+
+               /* BottomSheetDialog bottomSheetDialog=new BottomSheetDialog(getContext(),R.style.bottomSheetDialogTheme);
                 View view=LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet_metodo_pago,(LinearLayout)getView().findViewById(R.id.bottomShetContainer));
                 Button aceptar,cancelar;
 
@@ -96,12 +100,12 @@ public class FragmentCarrito extends Fragment implements ItemClick {
                 });
 
                 bottomSheetDialog.setContentView(view);
-                bottomSheetDialog.show();
+                bottomSheetDialog.show();*/
             }
         });
 
     }
-
+/*
     private void confirmarPago() {
         BottomSheetDialog bottomSheetDialog=new BottomSheetDialog(getContext(),R.style.bottomSheetDialogTheme);
         View view=LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet_confirmar_pago,(LinearLayout)getView().findViewById(R.id.bottomShetContainer));
@@ -174,7 +178,7 @@ public class FragmentCarrito extends Fragment implements ItemClick {
         }
         return maps;
     }
-
+*/
     private void cargarCarrito() {
         vmCarrito.getProductos().observe(getViewLifecycleOwner(),productoCarritos -> {
             listaProductos.clear();

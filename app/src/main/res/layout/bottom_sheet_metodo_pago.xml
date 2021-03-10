@@ -10,119 +10,54 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+             <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="30dp"
+            android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Datos de su tarjeta"
+            android:text="Métodos de pago disponible"
+            android:gravity="center_horizontal"
+            android:layout_weight="2"
             android:textAllCaps="true"
             android:textSize="18dp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_gravity="center"/>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="10dp"
-            android:background="#FFFFFF">
-
-
-            <EditText
-                android:id="@+id/numero"
-                android:layout_width="match_parent"
-                android:hint="Número de tarjeta"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/correo_texto"
-                android:inputType="number"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
+                 <ImageButton
+                     android:id="@+id/cerrar"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:background="@android:color/transparent"
+                     android:src="@drawable/icon_disminuir"
+                     />
+             </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="50dp">
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/correo_texto"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="#FFFFFF">
-
-
-            <EditText
-                android:id="@+id/anio"
-                android:layout_width="match_parent"
-                android:hint="Año"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/correo_texto"
-                android:inputType="date"
-                android:ems="5"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/correo_texto"
-                android:layout_marginTop="10dp"
-                android:background="#FFFFFF">
-
-
-                <EditText
-                    android:id="@+id/mes"
-                    android:layout_width="match_parent"
-                    android:hint="Mes"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/correo_texto"
-                    android:inputType="date"
-                    android:ems="5"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/correo_texto"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="10dp"
-            android:background="#FFFFFF">
-
-
-            <EditText
-                android:id="@+id/cvv"
-                android:layout_width="match_parent"
-                android:hint="CVV"
-                android:ems="10"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/correo_texto"
-                android:inputType="number"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
             <Button
-                android:id="@+id/cancelar"
+                android:id="@+id/tarjeta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="cancelar"
+                android:text="Tarjeta"
                 android:layout_gravity="center"
                 android:layout_marginRight="5dp"/>
             <Button
-                android:id="@+id/aceptar"
+                android:id="@+id/paypal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="5dp"
-                android:text="continuar"
-                android:layout_gravity="center"/>
+                android:text="Paypal"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"/>
+
         </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
