@@ -32,7 +32,7 @@ public class FragmentBSCalificar extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.bottom_sheet_eliminar,container,false);
+        View view = inflater.inflate(R.layout.bottom_sheet_calificar,container,false);
         return view;
     }
 

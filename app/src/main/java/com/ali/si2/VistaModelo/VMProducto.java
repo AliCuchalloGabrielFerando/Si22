@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.ali.si2.Modelos.Bandera;
 import com.ali.si2.Modelos.Categoria;
 import com.ali.si2.Modelos.Marca;
 import com.ali.si2.Modelos.Producto;
@@ -60,7 +61,7 @@ RepoPreview repoPreview;
     }
 
 
-    public LiveData<Boolean> setCalificacion(Map<String, String> map) {
+    public LiveData<Bandera> setCalificacion(Map<String, String> map) {
         return repoPreview.setCalificacion(map);
     }
 }

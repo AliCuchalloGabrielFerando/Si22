@@ -203,7 +203,7 @@ public class Preview extends AppCompatActivity implements ItemListenner, Filtro 
     public void onFiltro(Map<String, String> map) {
         map.put("productoID",String.valueOf(producto.getId()));
         vmProducto.setCalificacion(map).observe(this,aBoolean -> {
-            if (!aBoolean){
+            if (!aBoolean.getBandera()){
                 Toast.makeText(this, "fallo su calificacion", Toast.LENGTH_SHORT).show();
             }
         });

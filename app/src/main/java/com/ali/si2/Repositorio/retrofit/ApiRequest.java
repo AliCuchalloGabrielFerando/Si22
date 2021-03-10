@@ -1,5 +1,6 @@
 package com.ali.si2.Repositorio.retrofit;
 
+import com.ali.si2.Modelos.Bandera;
 import com.ali.si2.Modelos.Categoria;
 import com.ali.si2.Modelos.Marca;
 import com.ali.si2.Modelos.Pais;
@@ -94,7 +95,7 @@ public interface ApiRequest {
     Call<List<Producto>> buscarProductosFiltrados(@Body Map<String,String> body);
 
     @POST("calificarproducto")
-    Call<JsonObject>calificarProducto(@Body Map<String,String> body);
+    Call<Bandera>calificarProducto(@Body Map<String,String> body);
 
 //marca awui
     @GET("datalogin")
