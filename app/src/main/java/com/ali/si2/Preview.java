@@ -2,6 +2,7 @@ package com.ali.si2;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -22,9 +23,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ali.si2.Adaptadores.AdaptadorProducto;
 import com.ali.si2.Adaptadores.AdaptadorProductoSimple;
+import com.ali.si2.Fragmentos.DePreview.FragmentBSCalificar;
+import com.ali.si2.Interfaces.Filtro;
 import com.ali.si2.Interfaces.ItemListenner;
 import com.ali.si2.Modelos.Agregado;
 import com.ali.si2.Modelos.Empresa;
@@ -38,10 +42,11 @@ import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.ali.si2.R.color.color_primary;
 
-public class Preview extends AppCompatActivity implements ItemListenner {
+public class Preview extends AppCompatActivity implements ItemListenner, Filtro {
     Producto producto;
     Marca marcas;
     Garantia garantias;
@@ -103,49 +108,50 @@ public class Preview extends AppCompatActivity implements ItemListenner {
         marca.setText("");
         empresa.setText("");
 
-         vmProducto.datosExtraDeProducto(producto.getId()).observe(this,stringObjectHashMap -> {
-                marcas = (Marca) stringObjectHashMap.get("marca");
-                garantias = (Garantia) stringObjectHashMap.get("garantia");
-                promociones = (Promocion) stringObjectHashMap.get("promocion");
-                agregado = (Agregado) stringObjectHashMap.get("agregado");
-                empresas = (Empresa) stringObjectHashMap.get("empresa");
+        vmProducto.datosExtraDeProducto(producto.getId()).observe(this, stringObjectHashMap -> {
+            marcas = (Marca) stringObjectHashMap.get("marca");
+            garantias = (Garantia) stringObjectHashMap.get("garantia");
+            promociones = (Promocion) stringObjectHashMap.get("promocion");
+            agregado = (Agregado) stringObjectHashMap.get("agregado");
+            empresas = (Empresa) stringObjectHashMap.get("empresa");
 
-                if (!bandera) {
-                    marca.setText(marcas.getNombre());
-                }
-                //if(agregado.getAgregado()){
-                  //  agregarACarrito.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
-             //   }
+            if (!bandera) {
+                marca.setText(marcas.getNombre());
+            }
+            if (agregado.getAgregado()) {
+                agregarACarrito.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+            }
 
-                garantia.setText("");
-                garantia.setText(String.valueOf(garantias.getTiempo())+" años de garantia");
-                rating.setRating(producto.getCalificacion());
-                empresa.setText(empresas.getNombre());
-                promocion.setText("");
-                if(promociones != null){
-                    float precioss = 100 -promociones.getDescuento();
-                    precioss =precioss/100;
-                 //   precioss = producto.getPrecio() *precioss;
-                    String descuento =
-                           String.valueOf(precioss) ;
-                    SpannableStringBuilder spanBuilder = new SpannableStringBuilder( descuento + " $sus");
-                    StrikethroughSpan strikethroughSpan = new StrikethroughSpan();
-                    spanBuilder.setSpan(strikethroughSpan,
-                            0, descuento.length()+3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    promocion.setText(String.valueOf(producto.getPrecio()));
-                    promocion.setVisibility(View.GONE);
-                    precio.setText(String.valueOf(producto.getPrecio()));
-                    Log.d("al",String.valueOf(precioss));
-                    Log.d("al",String.valueOf(precioss));
-                    Log.d("paso","ultra paso aqui");
-
-                }else{
-                    Log.d("paso","aqui");
-                    precio.setText( producto.getPrecio() + " $us");
+            garantia.setText("");
+            garantia.setText(String.valueOf(garantias.getTiempo()) + " años de garantia");
+            rating.setRating(producto.getCalificacion());
+            empresa.setText(empresas.getNombre());
+            promocion.setText("");
+            if (promociones != null) {
+                Toast.makeText(this, "si entra", Toast.LENGTH_SHORT).show();
+                double precioss = 100 - promociones.getDescuento();
+                precioss = precioss / 100;
+                precioss = producto.getPrecio() * precioss;
+                String descuento =
+                        String.valueOf(precioss);
+                SpannableStringBuilder spanBuilder = new SpannableStringBuilder(producto.getPrecio() + " $us");
+                StrikethroughSpan strikethroughSpan = new StrikethroughSpan();
+                spanBuilder.setSpan(strikethroughSpan,
+                        0, descuento.length()+4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                promocion.setText(spanBuilder);
+                precio.setText(descuento + " $us");
+                if (producto.getPrecio() == precioss) {
                     promocion.setVisibility(View.GONE);
                 }
 
-            });
+
+            } else {
+                Log.d("paso", "aqui");
+                precio.setText(Integer.valueOf((int) producto.getPrecio()) + " $us");
+                promocion.setVisibility(View.GONE);
+            }
+
+        });
 
 
     }
@@ -160,11 +166,11 @@ public class Preview extends AppCompatActivity implements ItemListenner {
     }
 
     public void agregarACarrito(View view) {
-       // if(!agregado.getAgregado()){
-            agregarACarrito.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
-            vmProducto.agregarACarrito(producto.getId());
-            agregado.setAgregado(true);
-      //  }
+        // if(!agregado.getAgregado()){
+        agregarACarrito.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+        vmProducto.agregarACarrito(producto.getId());
+        agregado.setAgregado(true);
+        //  }
         //  agregarACarrito.setBackground(this.getResources().getDrawable(R.drawable.border_redondeado_primary));
     }
 
@@ -182,8 +188,24 @@ public class Preview extends AppCompatActivity implements ItemListenner {
         Intent intent = new Intent(this, Preview.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("producto", producto);
+        bundle.putSerializable("bandera", false);
         intent.putExtras(bundle);
         startActivity(intent);
 
+    }
+
+    public void calificar(View view) {
+        FragmentBSCalificar fragmentBSCalificar = new FragmentBSCalificar(this);
+        fragmentBSCalificar.show(getSupportFragmentManager(),"mostrarCalificar");
+    }
+
+    @Override
+    public void onFiltro(Map<String, String> map) {
+        map.put("productoID",String.valueOf(producto.getId()));
+        vmProducto.setCalificacion(map).observe(this,aBoolean -> {
+            if (!aBoolean.getBandera()){
+                Toast.makeText(this, "fallo su calificacion", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

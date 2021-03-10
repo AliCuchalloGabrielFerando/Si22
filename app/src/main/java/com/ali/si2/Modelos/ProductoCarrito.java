@@ -13,10 +13,11 @@ public class ProductoCarrito {
     private int garantia_id;
     private String nombreMarca;
     private int cantidadCompra;
+    private int descuento_id;
     private byte descuento;
     private int carrito_id;
 
-    public ProductoCarrito(int id, String nombre, String descripcion, float precio, String url_imagen, String url_3d, int calificacion, int cantidad, int garantia_id, String nombreMarca, int cantidadCompra, byte descuento, int carrito_id) {
+    public ProductoCarrito(int id, String nombre, String descripcion, float precio, String url_imagen, String url_3d, int calificacion, int cantidad, int garantia_id, String nombreMarca, int cantidadCompra, int descuento_id, byte descuento, int carrito_id) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -28,8 +29,17 @@ public class ProductoCarrito {
         this.garantia_id = garantia_id;
         this.nombreMarca = nombreMarca;
         this.cantidadCompra = cantidadCompra;
+        this.descuento_id = descuento_id;
         this.descuento = descuento;
         this.carrito_id = carrito_id;
+    }
+
+    public int getDescuento_id() {
+        return descuento_id;
+    }
+
+    public void setDescuento_id(int descuento_id) {
+        this.descuento_id = descuento_id;
     }
 
     public int getId() {

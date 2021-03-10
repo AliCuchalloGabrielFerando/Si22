@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ali.si2.Adaptadores.AdaptadorDetalleCompra;
+
 import com.ali.si2.Adaptadores.AdaptadorProductoCarrito;
 import com.ali.si2.Fragmentos.DeCarrito.FragmentBSEliminar;
 import com.ali.si2.Fragmentos.DeCarrito.SheetTipoPago;
@@ -138,6 +139,42 @@ public class FragmentCarrito extends Fragment implements ItemClick {
         bottomSheetDialog.setContentView(view);
         bottomSheetDialog.show();
     }
+
+    private void pagar() {
+        Map<String,Object> map=new HashMap<>();
+        map.put("numero",number);
+        map.put("anio",year);
+        map.put("mes",moth);
+        map.put("direccion",direccion);
+        map.put("telefono",telefono);
+        map.put("detalles",toMap(listaProductos));
+        map.put("carrito_id",listaProductos.get(0).getCarrito_id());
+        vmCarrito.pagar(map).observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean) {
+                    Toast.makeText(getContext(), "Compra exitosa", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getContext(), "Compra fallida", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });
+
+    }
+
+    private List<HashMap<String,Object>> toMap(List<ProductoCarrito> listaProductos) {
+        List<HashMap<String,Object>> maps=new ArrayList<>();
+        for (ProductoCarrito productoCarrito:listaProductos){
+            HashMap<String,Object> map = new HashMap<>();
+            map.put("id",productoCarrito.getId());
+            map.put("cantidadCompra",productoCarrito.getCantidadCompra());
+            map.put("precio",productoCarrito.getPrecio());
+            maps.add(map);
+        }
+        return maps;
+    }*/
 
     private void pagar(BottomSheetDialog bottomSheetDialog) {
         Map<String,Object> map=new HashMap<>();

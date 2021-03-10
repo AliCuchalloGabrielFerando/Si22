@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -32,18 +33,18 @@ public class Preferencias extends AppCompatActivity {
         chipCategorias.clearCheck();  //para limpiar los chequeos android no lo hace bien
         cargarCategorias();
         //Uso de Chipgroup
-       /* List<String> categorias;
+      /*  List<String> categorias;
         categorias = Arrays.asList(getResources().getStringArray(R.array.generos));
         LayoutInflater inflater= LayoutInflater.from(this);
-        for(String cat:categorias){
+       for(String cat:categorias){
             Chip chip= (Chip) inflater.inflate(R.layout.item_chip,null,false);
             chip.setText(cat);
 
-            chipCategorias.addView(chip);
+            chipCategorias.addView(chip);*/
             //chip.setChecked(true);
            // chipCategorias.notify(); no sirve cuelga la aplicacion
 
-        }*/
+
 
 
 
@@ -53,7 +54,7 @@ public class Preferencias extends AppCompatActivity {
         vmProducto.getCategorias().observe(this,categorias -> {
             listaCategoria.clear();
             listaCategoria.addAll(categorias);
-
+            Log.d("ver lo todo",categorias.size()+" son");
             LayoutInflater inflater= LayoutInflater.from(this);
             for(int i=0 ;i<listaCategoria.size();i++){
                 Chip chip= (Chip) inflater.inflate(R.layout.item_chip,null,false);
@@ -68,6 +69,7 @@ public class Preferencias extends AppCompatActivity {
     private void categoriasDeUsuario() {
         vmProducto.getCategoriasDeUsuario().observe(this,categorias -> {
             if(!categorias.isEmpty()){
+                Log.d("ver lo del ",categorias.size()+" son");
                 for(int i=0;i<categorias.size();i++){
                     for(int j=0;j<chipCategorias.getChildCount();j++) {
                         Chip chip = (Chip) chipCategorias.getChildAt(j);

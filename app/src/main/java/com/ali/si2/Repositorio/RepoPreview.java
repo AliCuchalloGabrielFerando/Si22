@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.ali.si2.Modelos.Agregado;
+import com.ali.si2.Modelos.Bandera;
 import com.ali.si2.Modelos.Empresa;
 import com.ali.si2.Modelos.Garantia;
 import com.ali.si2.Modelos.Marca;
@@ -93,5 +94,23 @@ public class RepoPreview {
             public void onFailure(Call<JsonObject> call, Throwable t) {
             }
         });
+    }
+
+    public MutableLiveData<Bandera> setCalificacion(Map<String, String> map) {
+        MutableLiveData<Bandera> mutableLiveData = new MutableLiveData<>();
+        apiRequest.calificarProducto(map).enqueue(new Callback<Bandera>() {
+            @Override
+            public void onResponse(Call<Bandera> call, Response<Bandera> response) {
+                if(response.isSuccessful() && response.body() != null){
+                    mutableLiveData.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Bandera> call, Throwable t) {
+
+            }
+        });
+        return mutableLiveData;
     }
 }

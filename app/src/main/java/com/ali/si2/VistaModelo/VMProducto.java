@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.ali.si2.Modelos.Bandera;
 import com.ali.si2.Modelos.Categoria;
 import com.ali.si2.Modelos.Marca;
 import com.ali.si2.Modelos.Producto;
@@ -14,6 +15,7 @@ import com.ali.si2.Repositorio.RepoUser;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class VMProducto extends ViewModel {
 RepoTienda repoTienda;
@@ -56,5 +58,10 @@ RepoPreview repoPreview;
 
     public LiveData<List<Categoria>> getLasCategorias() {
         return repoTienda.getLasCategorias();
+    }
+
+
+    public LiveData<Bandera> setCalificacion(Map<String, String> map) {
+        return repoPreview.setCalificacion(map);
     }
 }

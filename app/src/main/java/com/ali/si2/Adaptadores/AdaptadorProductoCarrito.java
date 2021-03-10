@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.StrikethroughSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,20 +51,24 @@ public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProd
         holder.precio.setText(String.valueOf(producto.getPrecio()));
         holder.cantidad.setText("Cantidad: " + producto.getCantidadCompra());
         holder.marca.setText(producto.getNombreMarca());
-      /*  if(producto.getDescuento() != 0){
-            String descuento =
-                    String.valueOf(producto.getPrecio() * ((100 -producto.getDescuento())/100)) ;
-            SpannableStringBuilder spanBuilder = new SpannableStringBuilder( descuento+ " Bs");
+        Log.d("tengo",producto.getDescuento_id()+" si dio");
+       if(producto.getDescuento() != 0){
+           double precioss = 100 - producto.getDescuento();
+           precioss = precioss / 100;
+           precioss = producto.getPrecio() * precioss;
+           String descuento =
+                   String.valueOf(precioss);
+            SpannableStringBuilder spanBuilder = new SpannableStringBuilder( producto.getPrecio()+ " $us");
             StrikethroughSpan strikethroughSpan = new StrikethroughSpan();
             spanBuilder.setSpan(strikethroughSpan,
-                    0, descuento.length()+3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            holder.descuento.setText(String.valueOf(producto.getPrecio()));
-            holder.precio.setText(spanBuilder);
+                    0, descuento.length()+4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            holder.descuento.setText(spanBuilder);
+            holder.precio.setText(descuento + " Bs");
 
-        }else{*/
-            holder.precio.setText(String.valueOf(producto.getPrecio()) +" $");
+        }else{
+            holder.precio.setText(String.valueOf(producto.getPrecio()) +" $us");
             holder.descuento.setVisibility(View.GONE);
-     //   }
+       }
 
         Glide.with(context)
                 .load(producto.getUrl_imagen())
