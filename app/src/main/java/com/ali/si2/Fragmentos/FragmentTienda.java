@@ -115,7 +115,11 @@ public class FragmentTienda extends Fragment implements ItemListenner {
     private void cargarCategoria() {
         vmProducto.getLasCategorias().observe(getActivity(),categorias1 -> {
             categorias.clear();
+            listaPadre.clear();
             categorias.addAll(categorias1);
+            for (Categoria categoria: categorias) {
+                listaPadre.add(new ArrayList<>());
+            }
             cargarProductos();
          //   Log.d("aqui",String.valueOf(categorias.size()));
         });
@@ -123,11 +127,11 @@ public class FragmentTienda extends Fragment implements ItemListenner {
 
 
     private void cargarProductos() {
-        listaPadre.clear();
-        for (Categoria categoria: categorias) {
-        vmProducto.getProductos(categoria.getId()).observe(this, productos -> {
+        for (int i=0;i<categorias.size();i++) {
+            int finalI = i;
+            vmProducto.getProductos(categorias.get(i).getId()).observe(this, productos -> {
             if(!productos.isEmpty()) {
-                listaPadre.add(productos);
+                listaPadre.set(finalI,productos);
                // Log.d("aqui",String.valueOf(productos.size()));
                // if(productos.size()>3)
               //  Log.d("aqui", String.valueOf(productos.get(2).getNombre()));
