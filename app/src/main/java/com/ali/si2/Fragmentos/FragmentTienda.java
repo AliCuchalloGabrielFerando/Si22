@@ -129,7 +129,7 @@ public class FragmentTienda extends Fragment implements ItemListenner {
             if(!productos.isEmpty()) {
                 listaPadre.add(productos);
                // Log.d("aqui",String.valueOf(productos.size()));
-                if(productos.size()>3)
+               // if(productos.size()>3)
               //  Log.d("aqui", String.valueOf(productos.get(2).getNombre()));
                /* listaProducto.clear();
                 listaProducto.addAll(productos);
