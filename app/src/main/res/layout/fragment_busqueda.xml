@@ -24,6 +24,7 @@
             android:layout_alignParentLeft="true"
             android:background="@color/white"
             android:queryHint="hola mundo"
+            android:layout_marginRight="40dp"
 
             />
         <ImageView

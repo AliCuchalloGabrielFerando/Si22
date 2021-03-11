@@ -64,7 +64,7 @@ public class FragmentBusqueda extends Fragment implements ItemListenner, Filtro 
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-               // filtro.setVisibility(View.VISIBLE);
+                filtro.setVisibility(View.VISIBLE);
                 nombre = query;
                 View view = getActivity().getCurrentFocus();
                 if (view != null){
@@ -113,11 +113,10 @@ public class FragmentBusqueda extends Fragment implements ItemListenner, Filtro 
 
     @Override
     public void onFiltro(Map<String, String> map) {
-        Toast.makeText(getContext(), "vamos vien", Toast.LENGTH_SHORT).show();
-        Log.d("tagg",map.get("fecha inicio"));
-        Log.d("tagg",map.get("fecha fin"));
-        Log.d("tagg",map.get("valorado"));
-        Log.d("tagg",map.get("vendido"));
+     //   Toast.makeText(getContext(), "vamos vien", Toast.LENGTH_SHORT).show();
+       // Log.d("tagg",map.get("fecha inicio"));
+      //  Log.d("tagg",map.get("fecha fin"));
+
         map.put("nombre",nombre);
         vmBusqueda.getProductosFiltrado(map).observe(getViewLifecycleOwner(),productos -> {
             listaProductos.clear();

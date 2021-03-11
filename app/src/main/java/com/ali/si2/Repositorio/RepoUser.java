@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.ali.si2.Modelos.Bandera;
 import com.ali.si2.Modelos.Pais;
 import com.ali.si2.Repositorio.retrofit.ApiRequest;
 import com.ali.si2.Repositorio.retrofit.RetrofitRequest;
@@ -233,6 +234,45 @@ public class RepoUser {
                         Log.d("TAG","NO ha respondido");
                     }
                 });
+        return mutableLiveData;
+    }
+
+    public MutableLiveData<Bandera> actualizarPerfil(Map<String, String> map) {
+     MutableLiveData<Bandera> mutableLiveData = new MutableLiveData<>();
+
+     apiRequest.actualizarPerfil(map).enqueue(new Callback<Bandera>() {
+         @Override
+         public void onResponse(Call<Bandera> call, Response<Bandera> response) {
+             if(response.isSuccessful() && response.body() != null){
+                 mutableLiveData.setValue(response.body());
+             }
+         }
+
+         @Override
+         public void onFailure(Call<Bandera> call, Throwable t) {
+
+         }
+     });
+
+
+     return  mutableLiveData;
+    }
+
+    public MutableLiveData<Bandera> actualizarContraseña(Map<String, String> map) {
+        MutableLiveData<Bandera> mutableLiveData = new MutableLiveData<>();
+        apiRequest.actualizarContraseña(map).enqueue(new Callback<Bandera>() {
+            @Override
+            public void onResponse(Call<Bandera> call, Response<Bandera> response) {
+                if(response.isSuccessful() && response.body() != null)
+                mutableLiveData.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Bandera> call, Throwable t) {
+
+            }
+        });
+
         return mutableLiveData;
     }
 }
