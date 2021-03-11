@@ -11,6 +11,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
 
+import com.ali.si2.EditarCuenta;
 import com.ali.si2.Login;
 import com.ali.si2.Logout;
 import com.ali.si2.R;
@@ -43,6 +44,9 @@ public class FragmentConfiguracion extends PreferenceFragmentCompat {
         if(key.compareTo("ajustes")==0){
 
             startActivity(new Intent(getContext(), Logout.class));
+        }
+        if(key.compareTo(("editar"))==0){
+            startActivity(new Intent(getContext(), EditarCuenta.class));
         }
 
         return true;

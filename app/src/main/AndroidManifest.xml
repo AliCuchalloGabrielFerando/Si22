@@ -18,6 +18,7 @@
         <activity android:name=".RecuperarCuentaFinal" />
         <activity android:name=".RecuperarCuenta" />
         <activity android:name=".CrearCuenta" />
+        <activity android:name=".EditarCuenta" />
 
         <service
             android:name=".Utilidades.MyFirebaseMessagingService"

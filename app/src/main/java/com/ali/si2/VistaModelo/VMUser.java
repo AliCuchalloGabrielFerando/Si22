@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 
+import com.ali.si2.Modelos.Bandera;
 import com.ali.si2.Modelos.Pais;
 import com.ali.si2.Repositorio.RepoUser;
 
@@ -40,5 +41,13 @@ public class VMUser extends ViewModel {
 
     public LiveData<Boolean> validar(String correo) {
         return repoUser.validar(correo);
+    }
+
+    public LiveData<Bandera> actualizarPerfil(Map<String, String> map) {
+        return repoUser.actualizarPerfil(map);
+    }
+
+    public LiveData<Bandera> actualizarContrasaeña(Map<String, String> map) {
+        return repoUser.actualizarContraseña(map);
     }
 }

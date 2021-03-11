@@ -11,7 +11,13 @@
     <Preference
         app:allowDividerBelow="true"
         app:allowDividerAbove="true"
-        android:title="ajustes"
+        android:title="Editar Perfil"
+        android:key="editar"
+        app:iconSpaceReserved="false"/>
+    <Preference
+        app:allowDividerBelow="true"
+        app:allowDividerAbove="true"
+        android:title="Logout"
         android:key="ajustes"
         app:iconSpaceReserved="false"/>
 

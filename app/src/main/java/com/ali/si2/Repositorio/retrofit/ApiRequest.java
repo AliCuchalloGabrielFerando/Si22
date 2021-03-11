@@ -107,6 +107,11 @@ public interface ApiRequest {
     @POST("calificarproducto")
     Call<Bandera>calificarProducto(@Body Map<String,String> body);
 
+    @POST("actualizarperfil")
+    Call<Bandera>actualizarPerfil(@Body Map<String,String> body);
+    @POST("actualizarcontraseña")
+    Call<Bandera>actualizarContraseña(@Body Map<String,String> body);
+
 //marca awui
     @GET("datalogin")
     Call<List<Pais>> datalogin();
