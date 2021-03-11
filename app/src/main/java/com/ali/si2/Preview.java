@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -175,11 +176,22 @@ public class Preview extends AppCompatActivity implements ItemListenner, Filtro 
     }
 
     public void verEn3D(View view) {
-        Intent intent = new Intent(this, VR.class);
+
+        Intent sceneViewerIntent = new Intent(Intent.ACTION_VIEW);
+        Uri intentUri =
+                Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
+                        .appendQueryParameter("file", producto.getUrl_3d())
+                        .appendQueryParameter("mode", "ar_preferred")
+                        .build();
+        sceneViewerIntent.setData(intentUri);
+        sceneViewerIntent.setPackage("com.google.ar.core");
+        startActivity(sceneViewerIntent);
+
+       /* Intent intent = new Intent(this, VR.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("producto", producto);
         intent.putExtras(bundle);
-        startActivity(intent);
+        startActivity(intent);*/
 
     }
 

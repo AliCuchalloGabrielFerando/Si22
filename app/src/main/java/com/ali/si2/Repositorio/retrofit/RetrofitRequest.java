@@ -17,7 +17,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitRequest {
     private static Retrofit retrofit;
-    private static final String BASE_URL="http://si2-web.herokuapp.com/api/";
+    private static final String BASE_URL="http://areality.ga/api/";
     public static Retrofit getRetrofitInstance(Context context) {
 
         if (retrofit == null) {
